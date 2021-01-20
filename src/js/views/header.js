@@ -14,13 +14,13 @@ const HeaderBtn = document.createElement('div')
 Header.append(HeaderBtn)
 
 const EnterBtn = document.createElement('a')
-EnterBtn.className = "waves-effect waves-light btn-large modal-trigger"
+EnterBtn.className = "waves-effect waves-light btn-large modal-trigger headerBtn__enter active"
 EnterBtn.href = "#signin"
 EnterBtn.innerHTML = "Вход"
 HeaderBtn.append(EnterBtn)
 
 const CreateBtn = document.createElement('a')
-CreateBtn.className = "waves-effect waves-light btn-large modal-trigger"
+CreateBtn.className = "waves-effect waves-light btn-large modal-trigger headerBtn__create"
 CreateBtn.href = "#create"
 CreateBtn.innerHTML = "Создать"
 HeaderBtn.append(CreateBtn)

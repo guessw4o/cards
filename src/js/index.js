@@ -51,25 +51,3 @@ function handleDoctor(e) {
         console.log(name)
     })
 }
-
-// const modalDoctor = document.querySelector(".modal-doctor");
-
-// const rowFormDoctor = document.createElement('div');
-// rowFormDoctor.className = "row form-doctor";
-// modalDoctor.append(rowFormDoctor)
-
-// const inputFieldColS11 = document.createElement('div');
-// inputFieldColS11.className = "input-field col s11";
-// rowFormDoctor.append(inputFieldColS11)
-
-// const input = document.createElement("input");
-// input.id = "text3";
-// input.type = "text";
-// inputFieldColS11.append(input)
-
-// const label = document.createElement("label");
-// label.for = "text3";
-// label.innerHTML = "бла бла js";
-// inputFieldColS11.append(label)
-
-
