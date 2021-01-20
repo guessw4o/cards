@@ -21,11 +21,12 @@ EnterSite.onclick=function() {
         .then((response) => {
             if (response.status !== 200) {
                 EnterError.innerHTML="Incorrect Login or Password"
+                return("noid")
             }else{
                 HeaderBtn__enter.classList.remove("active");
                 HeaderBtn__create.classList.add("active");
+                return response.text();
             }
-            return response.text();
         })
         .then((data) => {
             localStorage.setItem('token', data)
@@ -35,7 +36,7 @@ EnterSite.onclick=function() {
 
 const token = localStorage.getItem("token")
 
-if (token===null) {
+if (token === "noid" || token == null) {
     HeaderBtn__enter.classList.add("active");
     HeaderBtn__create.classList.remove("active");
 }else{
