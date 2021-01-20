@@ -42,7 +42,6 @@ const formFieldsByType = {
         patientFullName,
     ],
 }
-console.log('234')
 
 function handleDoctor(e) {
     console.log(e.target)
