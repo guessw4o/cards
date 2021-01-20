@@ -1,0 +1,169 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Step Project Cards</title>
+    <link rel="icon" href="src/img/favicon.png" type="image/png">
+    <link rel="stylesheet" href="dist/css/style.min.css">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+<body>
+<div class="row center-align hoverable search">
+    <div class="input-field col s4">
+        <input type="text" id="autocomplete-input" class="autocomplete">
+        <label for="autocomplete-input">Search</label>
+    </div>
+    <div class="input-field col s4">
+        <select>
+            <option value="" disabled selected>All</option>
+            <option value="1">Open</option>
+            <option value="2">Done</option>
+        </select>
+        <label>Status</label>
+    </div>
+    <div class="input-field col s4">
+        <select>
+            <option value="" disabled selected>All</option>
+            <option value="1">High</option>
+            <option value="2">Normal</option>
+            <option value="2">Low</option>
+        </select>
+        <label>Urgency</label>
+    </div>
+    <span>No items have been added</span>
+    <div class="row">
+        <div class="col m4">
+            <div class="card blue-grey darken-1">
+                <div class="card-content white-text left-align">
+                    <p>ФИО: Майборода Алексей Николаевич</p>
+                    <p>Врач: Проктолог</p>
+                    <p>Проблема: Зуд в заднем проходе</p>
+                </div>
+                <div class="card-action">
+                    <a href="#">Показать больше</a>
+                    <a href="#">Удалить</a>
+                </div>
+            </div>
+        </div>
+        <div class="col m4">
+            <div class="card blue-grey darken-1">
+                <div class="card-content white-text left-align">
+                    <p>ФИО: Майборода Алексей Николаевич</p>
+                    <p>Врач: Проктолог</p>
+                    <p>Проблема: Зуд в заднем проходе</p>
+                </div>
+                <div class="card-action">
+                    <a href="#">Показать больше</a>
+                    <a href="#">Удалить</a>
+                </div>
+            </div>
+        </div>
+        <div class="col m4">
+            <div class="card blue-grey darken-1">
+                <div class="card-content white-text left-align">
+                    <p>ФИО: Майборода Алексей Николаевич</p>
+                    <p>Врач: Проктолог</p>
+                    <p>Проблема: Зуд в заднем проходе</p>
+                </div>
+                <div class="card-action">
+                    <a href="#">Показать больше</a>
+                    <a href="#">Удалить</a>
+                </div>
+            </div>
+        </div>
+        <div class="col m4">
+            <div class="card blue-grey darken-1">
+                <div class="card-content white-text left-align">
+                    <p>ФИО: Майборода Алексей Николаевич</p>
+                    <p>Врач: Проктолог</p>
+                    <p>Проблема: Зуд в заднем проходе</p>
+                </div>
+                <div class="card-action">
+                    <a href="#">Показать больше</a>
+                    <a href="#">Удалить</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div id="signin" class="modal signin">
+    <div class="modal-content right-align">
+        <ul class="row">
+            <li class="input-field col s12">
+                <input id="email" type="email" class="validate">
+                <label for="email">Email</label>
+            </li>
+            <li class="input-field col s12">
+                <input id="password" type="password" class="validate">
+                <label for="password">Password</label>
+            </li>
+        </ul>
+        <button class="waves-effect waves-light btn modal-trigger enter-btn" href="#">Войти</button>
+    </div>
+</div>
+
+<div id="create" class="modal modal-doctor">
+    <div class="input-field choose-doctor">
+        <select onchange="handleDoctor(this)">
+            <option value="" disabled selected>Выбор специалиста</option>
+            <option value="1">Кардиолог</option>
+            <option value="2">Стоматолог</option>
+            <option value="3">Терапевт</option>
+        </select>
+    </div>
+
+    <ul class="row form-doctor">
+        <li class="input-field col s11">
+            <input id="text1" type="text">
+            <label for="text1">Цель визита</label>
+        </li>
+        <li class="input-field col s11">
+            <input id="text2" type="text">
+            <label for="text2">Краткое описание визита</label>
+        </li>
+        <li class="input-field col s11">
+                <select>
+                    <option value="" disabled selected>Срочность</option>
+                    <option value="1">Обычная</option>
+                    <option value="2">Приоритетная</option>
+                    <option value="3">Неотложная</option>
+                </select>
+        </li>
+        <li class="input-field col s11">
+            <input id="text3" type="text">
+            <label for="text3">Обычное давление(К)</label>
+        </li>
+        <li class="input-field col s11">
+            <input id="text4" type="text">
+            <label for="text4">Индекс массы тела(К)</label>
+        </li>
+        <li class="input-field col s11">
+            <input id="text5" type="text">
+            <label for="text5">Перенесенные заболевания сердечно-сосудистой(К)</label>
+        </li>
+        <li class="input-field col s11">
+            <input id="text6" type="text">
+            <label for="text6">Дата последнего посещения(С)</label>
+        </li>
+        <li class="input-field col s11">
+            <input id="text7" type="text">
+            <label for="text7">Возраст(К,Т)</label>
+        </li>
+        <li class="input-field col s11">
+            <input id="text8" type="text">
+            <label for="text8">ФИО</label>
+        </li>
+        <a class="waves-effect waves-light btn light-blue accent-3 create-close__btn">Закрыть</a>
+        <button class="btn waves-effect waves-light right create__btn" type="submit" name="action">Создать
+            <i class="material-icons right">send</i>
+        </button>
+    </ul>
+</div>
+<script type="text/javascript" src="src/js/index.js"></script>
+<script type="text/javascript" src="src/js/views/header.js"></script>
+<script type="text/javascript" src="src/js/materialize.js"></script>
+</body>
+</html>
