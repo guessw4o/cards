@@ -26,9 +26,9 @@
     <div class="input-field col s4">
         <select>
             <option value="" disabled selected>All</option>
-            <option value="1">High</option>
-            <option value="2">Normal</option>
-            <option value="2">Low</option>
+            <option value="high">High</option>
+            <option value="normal">Normal</option>
+            <option value="low">Low</option>
         </select>
         <label>Urgency</label>
     </div>
@@ -108,64 +108,29 @@
 
 <div id="create" class="modal modal-doctor">
     <div class="input-field choose-doctor">
-        <select onchange="handleDoctor(this)">
+        <select id="visitCreate" onchange="visitFunc();">
             <option value="" disabled selected>Выбор специалиста</option>
-            <option value="1">Кардиолог</option>
-            <option value="2">Стоматолог</option>
-            <option value="3">Терапевт</option>
+            <option value="cardiologist">Кардиолог</option>
+            <option value="dentist">Стоматолог</option>
+            <option value="therapist">Терапевт</option>
         </select>
     </div>
+</div>
 
-    <ul class="row form-doctor">
-        <li class="input-field col s11">
-            <input id="text1" type="text">
-            <label for="text1">Цель визита</label>
-        </li>
-        <li class="input-field col s11">
-            <input id="text2" type="text">
-            <label for="text2">Краткое описание визита</label>
-        </li>
-        <li class="input-field col s11">
-                <select>
-                    <option value="" disabled selected>Срочность</option>
-                    <option value="1">Обычная</option>
-                    <option value="2">Приоритетная</option>
-                    <option value="3">Неотложная</option>
-                </select>
-        </li>
-        <li class="input-field col s11">
-            <input id="text3" type="text">
-            <label for="text3">Обычное давление(К)</label>
-        </li>
-        <li class="input-field col s11">
-            <input id="text4" type="text">
-            <label for="text4">Индекс массы тела(К)</label>
-        </li>
-        <li class="input-field col s11">
-            <input id="text5" type="text">
-            <label for="text5">Перенесенные заболевания сердечно-сосудистой(К)</label>
-        </li>
-        <li class="input-field col s11">
-            <input id="text6" type="text">
-            <label for="text6">Дата последнего посещения(С)</label>
-        </li>
-        <li class="input-field col s11">
-            <input id="text7" type="text">
-            <label for="text7">Возраст(К,Т)</label>
-        </li>
-        <li class="input-field col s11">
-            <input id="text8" type="text">
-            <label for="text8">ФИО</label>
-        </li>
-        <a class="waves-effect waves-light btn light-blue accent-3 create-close__btn">Закрыть</a>
-        <button class="btn waves-effect waves-light right create__btn" type="submit" name="action">Создать
-            <i class="material-icons right">send</i>
-        </button>
-    </ul>
+<div class="materialize-bugs">
+    <li class="input-field col s11 formUrgency">
+        <select>
+            <option value="" disabled selected>Срочность</option>
+            <option value="low">Обычная</option>
+            <option value="normal">Приоритетная</option>
+            <option value="high">Неотложная</option>
+        </select>
+    </li>
 </div>
 <script type="text/javascript" src="src/js/index.js"></script>
-<script type="text/javascript" src="src/js/views/header.js"></script>
-<script type="text/javascript" src="src/js/api/api.js"></script>
+<script type="text/javascript" src="src/js/header.js"></script>
+<script type="text/javascript" src="src/js/login.js"></script>
+<script type="text/javascript" src="src/js/visit.js"></script>
 <script type="text/javascript" src="src/js/materialize.js"></script>
 </body>
 </html>
