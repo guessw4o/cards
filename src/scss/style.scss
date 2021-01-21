@@ -28,6 +28,7 @@ body {
 
 .modal-doctor {
     width: 25%;
+    min-height: 300px;
 }
 
 .enter-btn {
@@ -79,4 +80,8 @@ body {
 
 .headerBtn__create.active {
     display:block;
+}
+
+.materialize-bugs {
+    display:none;
 }
