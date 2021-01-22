@@ -1,10 +1,10 @@
 //включаем модальные окна от материалайз
-document.addEventListener('DOMContentLoaded', function () {
-    var modals = document.querySelectorAll('.modal');
-    M.Modal.init(modals);
+document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('.modal');
+    var instances = M.Modal.init(elems);
 });
 
-document.addEventListener('DOMContentLoaded', function () {
-    var selects = document.querySelectorAll('select');
-    M.FormSelect.init(selects);
+document.addEventListener('DOMContentLoaded', function() {
+    var elems = document.querySelectorAll('select');
+    var instances = M.FormSelect.init(elems);
 });
