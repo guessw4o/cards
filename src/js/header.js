@@ -20,9 +20,6 @@ enterBtn.href = "#signin"
 enterBtn.innerHTML = "Вход"
 headerBtn.append(enterBtn)
 
-enterBtn.onclick = document.addEventListener('DOMContentLoaded', function () {
-    M.Modal.init(modalSignin);
-});
 
 const createBtn = document.createElement('a')
 createBtn.className = "waves-effect waves-light btn-large modal-trigger headerBtn__create"
