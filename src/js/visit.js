@@ -45,9 +45,9 @@ formUrgency.className = "input-field col s11 formUrgency"
 const selectUrgency = document.createElement("select")
 selectUrgency.className = "selectUrgency"
 formUrgency.append(selectUrgency)
-const optionUrgency = document.createElement("option")
-optionUrgency.value = ""
-optionUrgency.innerHTML = "Срочность"
+// const optionUrgency = document.createElement("option")
+// optionUrgency.value = ""
+// optionUrgency.innerHTML = "Срочность"
 const lowUrgency = document.createElement("option")
 lowUrgency.value = "low"
 lowUrgency.innerHTML = "Обычная"
@@ -57,7 +57,7 @@ normalUrgency.innerHTML = "Приоритетная"
 const highUrgency = document.createElement("option")
 highUrgency.value = "high"
 highUrgency.innerHTML = "Неотложная"
-selectUrgency.append(optionUrgency, lowUrgency, normalUrgency, highUrgency)
+selectUrgency.append(lowUrgency, normalUrgency, highUrgency)
 
 //фиксим баги материалайза
 const materializeBugs = document.createElement("div")
@@ -269,6 +269,36 @@ function visitFunc() {
         formFullName.after(formCreate)
         
         formCreate.onclick = function () {
+            if (inputPurpose.value == 0) {
+                inputPurpose.classList.add("invalid");
+                return false
+            }
+    
+            if (inputPressure.value == 0) {
+                inputPressure.classList.add("invalid");
+                return false
+            }
+    
+            if (inputBodyMass.value == 0) {
+                inputBodyMass.classList.add("invalid");
+                return false
+            }
+    
+            if (inputCardiovascular.value == 0) {
+                inputCardiovascular.classList.add("invalid");
+                return false
+            }
+    
+            if (inputAge.value == 0) {
+                inputAge.classList.add("invalid");
+                return false
+            }
+    
+            if (inputFullName.value == 0) {
+                inputFullName.classList.add("invalid");
+                return false
+            }
+
             fetch("https://ajax.test-danit.com/api/cards", {
                 method: "post",
                 headers: {
@@ -355,6 +385,21 @@ function visitFunc() {
         formFullName.after(formCreate)
         
         formCreate.onclick = function () {
+            if (inputPurpose.value == 0) {
+                inputPurpose.classList.add("invalid");
+                return false
+            }
+    
+            if (inputLastVisit.value == 0) {
+                inputLastVisit.classList.add("invalid");
+                return false
+            }
+    
+            if (inputFullName.value == 0) {
+                inputFullName.classList.add("invalid");
+                return false
+            }
+            
             fetch("https://ajax.test-danit.com/api/cards", {
                 method: "post",
                 headers: {
@@ -438,6 +483,20 @@ function visitFunc() {
         formFullName.after(formCreate)
         
         formCreate.onclick = function () {
+            if (inputPurpose.value == 0) {
+                inputPurpose.classList.add("invalid");
+                return false
+            }
+    
+            if (inputAge.value == 0) {
+                inputAge.classList.add("invalid");
+                return false
+            }
+    
+            if (inputFullName.value == 0) {
+                inputFullName.classList.add("invalid");
+                return false
+            }
             fetch("https://ajax.test-danit.com/api/cards", {
                 method: "post",
                 headers: {
