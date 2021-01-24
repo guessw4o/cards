@@ -273,32 +273,56 @@ function visitFunc() {
                 inputPurpose.classList.add("invalid");
                 return false
             }
+<<<<<<< HEAD
     
+=======
+            
+>>>>>>> andrey
             if (inputPressure.value == 0) {
                 inputPressure.classList.add("invalid");
                 return false
             }
+<<<<<<< HEAD
     
+=======
+            
+>>>>>>> andrey
             if (inputBodyMass.value == 0) {
                 inputBodyMass.classList.add("invalid");
                 return false
             }
+<<<<<<< HEAD
     
+=======
+            
+>>>>>>> andrey
             if (inputCardiovascular.value == 0) {
                 inputCardiovascular.classList.add("invalid");
                 return false
             }
+<<<<<<< HEAD
     
+=======
+            
+>>>>>>> andrey
             if (inputAge.value == 0) {
                 inputAge.classList.add("invalid");
                 return false
             }
+<<<<<<< HEAD
     
+=======
+            
+>>>>>>> andrey
             if (inputFullName.value == 0) {
                 inputFullName.classList.add("invalid");
                 return false
             }
+<<<<<<< HEAD
 
+=======
+            
+>>>>>>> andrey
             fetch("https://ajax.test-danit.com/api/cards", {
                 method: "post",
                 headers: {
@@ -363,12 +387,21 @@ function visitFunc() {
         labelLastVisit.innerHTML = "Дата последнего посещения"
         formLastVisit.append(labelLastVisit)
         formUrgency.after(formLastVisit)
+<<<<<<< HEAD
         
         
         if (document.contains(document.querySelector(".formCreate"))) {
             document.querySelector(".formCreate").remove();
         }
         
+=======
+        
+        
+        if (document.contains(document.querySelector(".formCreate"))) {
+            document.querySelector(".formCreate").remove();
+        }
+        
+>>>>>>> andrey
         //кнопка отправки на сервер
         const formCreate = document.createElement("button")
         formCreate.className = "btn waves-effect waves-light right create__btn formCreate"
@@ -389,12 +422,20 @@ function visitFunc() {
                 inputPurpose.classList.add("invalid");
                 return false
             }
+<<<<<<< HEAD
     
+=======
+            
+>>>>>>> andrey
             if (inputLastVisit.value == 0) {
                 inputLastVisit.classList.add("invalid");
                 return false
             }
+<<<<<<< HEAD
     
+=======
+            
+>>>>>>> andrey
             if (inputFullName.value == 0) {
                 inputFullName.classList.add("invalid");
                 return false
@@ -487,12 +528,20 @@ function visitFunc() {
                 inputPurpose.classList.add("invalid");
                 return false
             }
+<<<<<<< HEAD
     
+=======
+            
+>>>>>>> andrey
             if (inputAge.value == 0) {
                 inputAge.classList.add("invalid");
                 return false
             }
+<<<<<<< HEAD
     
+=======
+            
+>>>>>>> andrey
             if (inputFullName.value == 0) {
                 inputFullName.classList.add("invalid");
                 return false

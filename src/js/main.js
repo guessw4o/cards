@@ -27,10 +27,22 @@ function getcontent() {
                 const contentCards = document.createElement("div")
                 contentCards.className = "card-content white-text left-align"
                 
-                const deleteCards = document.createElement("span")
+                const deleteCards = document.createElement("a")
                 deleteCards.className = "right"
                 deleteCards.style.cursor = "pointer"
+                deleteCards.style.color = "#ffffff"
                 deleteCards.innerHTML = "X"
+                
+                deleteCards.onclick = function () {
+                    fetch(`https://ajax.test-danit.com/api/cards/${info.id}`, {
+                        method: "delete",
+                        headers: {
+                            "Content-Type": "application/json; charset=utf-8",
+                            Authorization: `Bearer ${localStorage.getItem("token")}`
+                        },
+                    })
+                    colCards.remove()
+                }
                 
                 const cardAction = document.createElement("div")
                 cardAction.className = "card-action"
@@ -42,6 +54,12 @@ function getcontent() {
                 
                 loadMore.onclick = function () {
                     divHide.classList.remove("hide");
+                    loadMore.classList.add("hide")
+    
+                    if (`${info.content.doctor}` === "Кардиолог") {
+                        console.log("Кардио")
+                    }
+                    
                 }
                 
                 const editCard = document.createElement("a")
