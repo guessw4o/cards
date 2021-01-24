@@ -1,0 +1,91 @@
+@import "materialize";
+
+body {
+    background-image: url(../img/bg2.jpg);
+    background-size: cover;
+    background-attachment: fixed;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    padding: 30px 200px 30px 200px;
+    align-items: center;
+    font-size: 50px;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.search {
+    margin: 50px 150px 30px 150px;
+    padding: 0 200px 0 200px;
+    background-color: rgba(255, 255, 255, 0.1);
+    padding-top: 30px;
+}
+
+.signin {
+    width: 20%;
+}
+
+.modal-doctor {
+    width: 25%;
+    min-height: 300px;
+}
+
+.enter-btn {
+    margin-right: 10px;
+}
+
+.check-doctor__btn {
+    margin: 30px 0 10px 30%;
+}
+
+.form-doctor {
+    margin-left: 20px;
+}
+
+.create-urgency {
+    margin: 10px 0px 10px 10px;
+    padding: 0 25px 0 25px;
+}
+
+.create-close__btn {
+    margin-left: 10px;
+}
+
+.create__btn {
+    margin-right: 45px;
+}
+
+.choose-doctor {
+    width: 65%;
+    margin: 30px auto;
+}
+
+.enter-error {
+    color: red;
+    padding: 8px 0 0 9px;
+}
+
+.headerBtn__enter {
+    display:none;
+}
+
+.headerBtn__enter.active {
+    display:block;
+}
+
+.headerBtn__create {
+    display:none;
+}
+
+.headerBtn__create.active {
+    display:block;
+}
+
+.materialize-bugs {
+    display:none;
+}
+
+.searchBtn {
+    margin-top: 10px;
+}
