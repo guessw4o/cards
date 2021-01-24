@@ -49,13 +49,13 @@ formUrgency.append(selectUrgency)
 // optionUrgency.value = ""
 // optionUrgency.innerHTML = "Срочность"
 const lowUrgency = document.createElement("option")
-lowUrgency.value = "low"
+lowUrgency.value = "Обычная"
 lowUrgency.innerHTML = "Обычная"
 const normalUrgency = document.createElement("option")
-normalUrgency.value = "normal"
+normalUrgency.value = "Приоритетная"
 normalUrgency.innerHTML = "Приоритетная"
 const highUrgency = document.createElement("option")
-highUrgency.value = "high"
+highUrgency.value = "Неотложная"
 highUrgency.innerHTML = "Неотложная"
 selectUrgency.append(lowUrgency, normalUrgency, highUrgency)
 
@@ -273,56 +273,32 @@ function visitFunc() {
                 inputPurpose.classList.add("invalid");
                 return false
             }
-<<<<<<< HEAD
-    
-=======
-            
->>>>>>> andrey
+
             if (inputPressure.value == 0) {
                 inputPressure.classList.add("invalid");
                 return false
             }
-<<<<<<< HEAD
-    
-=======
-            
->>>>>>> andrey
+
             if (inputBodyMass.value == 0) {
                 inputBodyMass.classList.add("invalid");
                 return false
             }
-<<<<<<< HEAD
-    
-=======
-            
->>>>>>> andrey
+
             if (inputCardiovascular.value == 0) {
                 inputCardiovascular.classList.add("invalid");
                 return false
             }
-<<<<<<< HEAD
-    
-=======
-            
->>>>>>> andrey
+
             if (inputAge.value == 0) {
                 inputAge.classList.add("invalid");
                 return false
             }
-<<<<<<< HEAD
-    
-=======
-            
->>>>>>> andrey
+
             if (inputFullName.value == 0) {
                 inputFullName.classList.add("invalid");
                 return false
             }
-<<<<<<< HEAD
 
-=======
-            
->>>>>>> andrey
             fetch("https://ajax.test-danit.com/api/cards", {
                 method: "post",
                 headers: {
@@ -344,6 +320,10 @@ function visitFunc() {
                 .then((response) => {
                     if (response.status === 200) {
                         modalDoctor.M_Modal.close()
+                        const rowCardQ = document.querySelector(".rowCard")
+                        rowCardQ.remove()
+                        renderCards()
+                        getcontent()
                         return response.text()
                     } else {
                         alert("Что-то пошло не так")
@@ -387,21 +367,11 @@ function visitFunc() {
         labelLastVisit.innerHTML = "Дата последнего посещения"
         formLastVisit.append(labelLastVisit)
         formUrgency.after(formLastVisit)
-<<<<<<< HEAD
-        
-        
+
         if (document.contains(document.querySelector(".formCreate"))) {
             document.querySelector(".formCreate").remove();
         }
         
-=======
-        
-        
-        if (document.contains(document.querySelector(".formCreate"))) {
-            document.querySelector(".formCreate").remove();
-        }
-        
->>>>>>> andrey
         //кнопка отправки на сервер
         const formCreate = document.createElement("button")
         formCreate.className = "btn waves-effect waves-light right create__btn formCreate"
@@ -422,20 +392,12 @@ function visitFunc() {
                 inputPurpose.classList.add("invalid");
                 return false
             }
-<<<<<<< HEAD
-    
-=======
-            
->>>>>>> andrey
+
             if (inputLastVisit.value == 0) {
                 inputLastVisit.classList.add("invalid");
                 return false
             }
-<<<<<<< HEAD
-    
-=======
-            
->>>>>>> andrey
+
             if (inputFullName.value == 0) {
                 inputFullName.classList.add("invalid");
                 return false
@@ -459,6 +421,10 @@ function visitFunc() {
                 .then((response) => {
                     if (response.status === 200) {
                         modalDoctor.M_Modal.close()
+                        const rowCardQ = document.querySelector(".rowCard")
+                        rowCardQ.remove()
+                        renderCards()
+                        getcontent()
                         return response.text()
                     } else {
                         alert("Что-то пошло не так")
@@ -528,20 +494,12 @@ function visitFunc() {
                 inputPurpose.classList.add("invalid");
                 return false
             }
-<<<<<<< HEAD
-    
-=======
-            
->>>>>>> andrey
+
             if (inputAge.value == 0) {
                 inputAge.classList.add("invalid");
                 return false
             }
-<<<<<<< HEAD
-    
-=======
-            
->>>>>>> andrey
+
             if (inputFullName.value == 0) {
                 inputFullName.classList.add("invalid");
                 return false
@@ -564,6 +522,10 @@ function visitFunc() {
                 .then((response) => {
                     if (response.status === 200) {
                         modalDoctor.M_Modal.close()
+                        const rowCardQ = document.querySelector(".rowCard")
+                        rowCardQ.remove()
+                        renderCards()
+                        getcontent()
                         return response.text()
                     } else {
                         alert("Что-то пошло не так")
@@ -576,55 +538,3 @@ function visitFunc() {
         
     }
 }
-
-// const required = true
-// const patientPurpose = { name: 'purpose', label: 'Цель визита', required }
-// const patientDescription = { name: 'description', label: 'Краткое описание визита' }
-// //срочность добавить
-// const patientPressure = { name: 'pressure', label: 'Обычное давление', required }
-// const patientBodyMass = { name: 'body-mass', label: 'Индекс массы тела', required }
-// const patientCardiovascular = {
-//     name: 'cardiovascular',
-//     label: 'Перенесенные заболевания сердечно-сосудистой',
-//     required
-// }
-// const patientLastVisit = { name: 'last-visit', label: 'Дата последнего посещения', required }
-// const patientAge = { name: 'age', label: 'Возраст', required }
-// const patientFullName = { name: 'full-name', label: 'ФИО', required }
-//
-// const formFieldsByType = {
-//     cardiologist: [
-//         patientPurpose,
-//         patientDescription,
-//         patientPressure,
-//         patientBodyMass,
-//         patientCardiovascular,
-//         patientAge,
-//         patientFullName,
-//     ],
-//     dentist: [
-//         patientPurpose,
-//         patientDescription,
-//         patientLastVisit,
-//         patientFullName,
-//     ],
-//     therapist: [
-//         patientPurpose,
-//         patientDescription,
-//         patientAge,
-//         patientFullName,
-//     ],
-// }
-//
-// // console.log(formFieldsByType)
-//
-//
-// function handleDoctor(e) {
-//     const { value } = e.target.name
-//     const formFields = formFieldsByType[value]
-//
-//     console.log(formFields)
-//     formFields.forEach(({ name, label, required }) => {
-//         console.log(name)
-//     })
-// }

@@ -1,7 +1,11 @@
-const main = document.querySelector(".search")
-
-const rowCard = document.createElement("div")
-main.append(rowCard)
+function renderCards(){
+    const main = document.querySelector(".search")
+    
+    const rowCard = document.createElement("div")
+    rowCard.className = "rowCard"
+    main.append(rowCard)
+}
+renderCards()
 
 function getcontent() {
     fetch("https://ajax.test-danit.com/api/cards", {
@@ -16,9 +20,11 @@ function getcontent() {
             console.log(data)
             data.forEach((info) => {
                 
+                const rowCardC = document.querySelector(".rowCard")
+                
                 const colCards = document.createElement("div")
                 colCards.className = "col m4"
-                rowCard.append(colCards)
+                rowCardC.append(colCards)
                 
                 const greyCards = document.createElement("div")
                 greyCards.className = "card blue-grey darken-1"
@@ -55,9 +61,19 @@ function getcontent() {
                 loadMore.onclick = function () {
                     divHide.classList.remove("hide");
                     loadMore.classList.add("hide")
-    
+                    
                     if (`${info.content.doctor}` === "Кардиолог") {
-                        console.log("Кардио")
+                        pLastVisit.remove()
+                    } else if (`${info.content.doctor}` === "Стоматолог") {
+                        pPressure.remove()
+                        pBodyMass.remove()
+                        pCardiovascular.remove()
+                        pAge.remove()
+                    } else if (`${info.content.doctor}` === "Терапевт") {
+                        pPressure.remove()
+                        pBodyMass.remove()
+                        pCardiovascular.remove()
+                        pLastVisit.remove()
                     }
                     
                 }
