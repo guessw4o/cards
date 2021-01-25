@@ -146,7 +146,7 @@ inputLastVisit.id = "lastvisit"
 inputLastVisit.type = "text"
 formLastVisit.append(inputLastVisit)
 const labelLastVisit = document.createElement("label")
-labelLastVisit.setAttribute("for", "age");
+labelLastVisit.setAttribute("for", "lastvisit");
 labelLastVisit.innerHTML = "Дата последнего посещения"
 formLastVisit.append(labelLastVisit)
 
@@ -158,7 +158,7 @@ inputFullName.id = "fullname"
 inputFullName.type = "text"
 formFullName.append(inputFullName)
 const labelFullName = document.createElement("label")
-labelFullName.setAttribute("for", "age");
+labelFullName.setAttribute("for", "fullname");
 labelFullName.innerHTML = "ФИО"
 formFullName.append(labelFullName)
 
@@ -363,7 +363,7 @@ function visitFunc() {
         inputLastVisit.type = "text"
         formLastVisit.append(inputLastVisit)
         const labelLastVisit = document.createElement("label")
-        labelLastVisit.setAttribute("for", "age");
+        labelLastVisit.setAttribute("for", "lastvisit");
         labelLastVisit.innerHTML = "Дата последнего посещения"
         formLastVisit.append(labelLastVisit)
         formUrgency.after(formLastVisit)
