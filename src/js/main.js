@@ -93,7 +93,6 @@ function getcontent(noItems) {
                         pCardiovascular.remove()
                         pLastVisit.remove()
                     }
-                    
                 }
                 
                 const editCard = document.createElement("a")
@@ -114,6 +113,8 @@ function getcontent(noItems) {
                     
                     contentCards.innerHTML = "";
                     contentCards.prepend(deleteCards)
+    
+                    contentCards.append(formUrgency)
                     
                     const formFullNamePut = document.createElement("div")
                     formFullNamePut.className = "input-field"
