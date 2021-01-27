@@ -12,7 +12,7 @@ chooseDoctor.className = "input-field choose-doctor"
 
 const visitCreate = document.createElement("select")
 visitCreate.id = "visitCreate"
-visitCreate.setAttribute("onchange", "visitFunc();");
+visitCreate.onchange = visitFunc;
 
 // const selectDoctor = document.createElement("option")
 // selectDoctor.value = ""
@@ -37,33 +37,36 @@ modalDoctor.append(chooseDoctor)
 //форма
 const formDoctor = document.createElement('ul')
 formDoctor.className = "row form-doctor";
-modalDoctor.append(formDoctor)
 
 //забаганый селект материалайза
-const formUrgency = document.createElement("li")
-formUrgency.className = "input-field col s11 formUrgency"
-const selectUrgency = document.createElement("select")
-selectUrgency.className = "selectUrgency"
-formUrgency.append(selectUrgency)
+function formItemUrgency () {
+    const li = document.createElement("li")
+    li.className = "input-field col s11 formUrgency"
+    const select = document.createElement("select")
+    select.className = "selectUrgency"
+    
+    const lowUrgency = document.createElement("option")
+    lowUrgency.value = "Обычная"
+    lowUrgency.innerHTML = "Обычная"
+    
+    const normalUrgency = document.createElement("option")
+    normalUrgency.value = "Приоритетная"
+    normalUrgency.innerHTML = "Приоритетная"
+    
+    const highUrgency = document.createElement("option")
+    highUrgency.value = "Неотложная"
+    highUrgency.innerHTML = "Неотложная"
+    
+    select.append(lowUrgency, normalUrgency, highUrgency)
+    li.append(select)
+    return [li, select]
+}
+
+const [formUrgency, selectUrgency] = formItemUrgency()
+
 // const optionUrgency = document.createElement("option")
 // optionUrgency.value = ""
 // optionUrgency.innerHTML = "Срочность"
-const lowUrgency = document.createElement("option")
-lowUrgency.value = "Обычная"
-lowUrgency.innerHTML = "Обычная"
-const normalUrgency = document.createElement("option")
-normalUrgency.value = "Приоритетная"
-normalUrgency.innerHTML = "Приоритетная"
-const highUrgency = document.createElement("option")
-highUrgency.value = "Неотложная"
-highUrgency.innerHTML = "Неотложная"
-selectUrgency.append(lowUrgency, normalUrgency, highUrgency)
-
-//фиксим баги материалайза
-const materializeBugs = document.createElement("div")
-materializeBugs.className = "materialize-bugs"
-
-document.body.append(materializeBugs, formUrgency)
 
 //цель визита
 const formPurpose = document.createElement("li")
@@ -169,10 +172,13 @@ formClose.innerHTML = "Закрыть"
 
 
 formDoctor.append(formPurpose, formDescription, formUrgency, formPressure, formBodyMass, formCardiovascular, formAge, formFullName, formClose)
+modalDoctor.append(formDoctor)
 
 visitFunc();
 
 function visitFunc() {
+    console.log('formUrgency', formUrgency)
+    console.log('formDoctor', formDoctor)
     const selectedDoctor = visitCreate.options[visitCreate.selectedIndex].value;
     
     if (selectedDoctor === "cardiologist") {
@@ -269,7 +275,7 @@ function visitFunc() {
         formFullName.after(formCreate)
         
         formCreate.onclick = function () {
-            if (inputPurpose.value == 0) {
+            if (!inputPurpose.value) {
                 inputPurpose.classList.add("invalid");
                 return false
             }
@@ -298,40 +304,18 @@ function visitFunc() {
                 inputFullName.classList.add("invalid");
                 return false
             }
-
-            fetch("https://ajax.test-danit.com/api/cards", {
-                method: "post",
-                headers: {
-                    "Content-Type": "application/json; charset=utf-8",
-                    Authorization: `Bearer ${localStorage.getItem("token")}`
-                },
-                body: JSON.stringify({
-                    "doctor": "Кардиолог",
-                    "purpose": inputPurpose.value,
-                    "description": inputDescription.value,
-                    "urgency": selectUrgency.value,
-                    "pressure": inputPressure.value,
-                    "bodymass": inputBodyMass.value,
-                    "cardiovascular": inputCardiovascular.value,
-                    "age": inputAge.value,
-                    "fullname": inputFullName.value
-                })
+    
+            sendRequest({
+                "doctor": "Кардиолог",
+                "purpose": inputPurpose.value,
+                "description": inputDescription.value,
+                "urgency": selectUrgency.value,
+                "pressure": inputPressure.value,
+                "bodymass": inputBodyMass.value,
+                "cardiovascular": inputCardiovascular.value,
+                "age": inputAge.value,
+                "fullname": inputFullName.value
             })
-                .then((response) => {
-                    if (response.status === 200) {
-                        modalDoctor.M_Modal.close()
-                        const rowCardQ = document.querySelector(".rowCard")
-                        rowCardQ.remove()
-                        renderCards()
-                        getcontent()
-                        return response.text()
-                    } else {
-                        alert("Что-то пошло не так")
-                    }
-                })
-                .then((data) => {
-                    console.log(data)
-                })
         }
         
     } else if (selectedDoctor === "dentist") {
@@ -403,36 +387,14 @@ function visitFunc() {
                 return false
             }
             
-            fetch("https://ajax.test-danit.com/api/cards", {
-                method: "post",
-                headers: {
-                    "Content-Type": "application/json; charset=utf-8",
-                    Authorization: `Bearer ${localStorage.getItem("token")}`
-                },
-                body: JSON.stringify({
-                    "doctor": "Стоматолог",
-                    "purpose": inputPurpose.value,
-                    "description": inputDescription.value,
-                    "urgency": selectUrgency.value,
-                    "lastvisit": inputLastVisit.value,
-                    "fullname": inputFullName.value
-                })
+            sendRequest({
+                "doctor": "Стоматолог",
+                "purpose": inputPurpose.value,
+                "description": inputDescription.value,
+                "urgency": selectUrgency.value,
+                "lastvisit": inputLastVisit.value,
+                "fullname": inputFullName.value
             })
-                .then((response) => {
-                    if (response.status === 200) {
-                        modalDoctor.M_Modal.close()
-                        const rowCardQ = document.querySelector(".rowCard")
-                        rowCardQ.remove()
-                        renderCards()
-                        getcontent()
-                        return response.text()
-                    } else {
-                        alert("Что-то пошло не так")
-                    }
-                })
-                .then((data) => {
-                    console.log(data)
-                })
         }
         
     } else if (selectedDoctor === "therapist") {
@@ -504,37 +466,44 @@ function visitFunc() {
                 inputFullName.classList.add("invalid");
                 return false
             }
-            fetch("https://ajax.test-danit.com/api/cards", {
-                method: "post",
-                headers: {
-                    "Content-Type": "application/json; charset=utf-8",
-                    Authorization: `Bearer ${localStorage.getItem("token")}`
-                },
-                body: JSON.stringify({
-                    "doctor": "Терапевт",
-                    "purpose": inputPurpose.value,
-                    "description": inputDescription.value,
-                    "urgency": selectUrgency.value,
-                    "age": inputAge.value,
-                    "fullname": inputFullName.value
-                })
+    
+            sendRequest({
+                doctor: "Терапевт",
+                purpose: inputPurpose.value,
+                description: inputDescription.value,
+                urgency: selectUrgency.value,
+                age: inputAge.value,
+                fullname: inputFullName.value
             })
-                .then((response) => {
-                    if (response.status === 200) {
-                        modalDoctor.M_Modal.close()
-                        const rowCardQ = document.querySelector(".rowCard")
-                        rowCardQ.remove()
-                        renderCards()
-                        getcontent()
-                        return response.text()
-                    } else {
-                        alert("Что-то пошло не так")
-                    }
-                })
-                .then((data) => {
-                    console.log(data)
-                })
         }
         
     }
+}
+
+function sendRequest (body) {
+    fetch("https://ajax.test-danit.com/api/cards", {
+        method: "post",
+        headers: {
+            "Content-Type": "application/json; charset=utf-8",
+            Authorization: `Bearer ${localStorage.getItem("token")}`
+        },
+        body: JSON.stringify(body)
+    })
+        .then((response) => {
+            if (response.status === 200) {
+                modalDoctor.M_Modal.close()
+                const rowCardQ = document.querySelector(".rowCard")
+                rowCardQ.remove()
+                const noItemsQ = document.querySelector(".no-items")
+                noItemsQ.remove()
+                renderCards()
+                getcontent()
+                return response.text()
+            } else {
+                alert("Что-то пошло не так")
+            }
+        })
+        .then((data) => {
+            console.log(data)
+        })
 }

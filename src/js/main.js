@@ -114,8 +114,6 @@ function getcontent(noItems) {
                     contentCards.innerHTML = "";
                     contentCards.prepend(deleteCards)
     
-                    contentCards.append(formUrgency)
-                    
                     const formFullNamePut = document.createElement("div")
                     formFullNamePut.className = "input-field"
                     const inputFullNamePut = document.createElement("input")
@@ -155,20 +153,22 @@ function getcontent(noItems) {
                     formDescriptionPut.append(labelDescriptionPut)
                     inputDescriptionPut.value = `${info.content.description}`
                     
-                    const formUrgencyPut = document.createElement("div")
-                    formUrgencyPut.className = "input-field"
-                    const inputUrgencyPut = document.createElement("input")
-                    inputUrgencyPut.id = "urgency"
-                    inputUrgencyPut.type = "text"
-                    formUrgencyPut.append(inputUrgencyPut)
-                    const labelUrgencyPut = document.createElement("label")
-                    labelUrgencyPut.className = "active"
-                    labelUrgencyPut.setAttribute("for", "urgency");
-                    labelUrgencyPut.innerHTML = "Срочность"
-                    formUrgencyPut.append(labelUrgencyPut)
-                    inputUrgencyPut.value = `${info.content.urgency}`
-                    
-                    contentCards.append(formFullNamePut, formPurposePut, formDescriptionPut, formUrgencyPut)
+                    // const formUrgencyPut = document.createElement("div")
+                    // formUrgencyPut.className = "input-field"
+                    // const inputUrgencyPut = document.createElement("input")
+                    // inputUrgencyPut.id = "urgency"
+                    // inputUrgencyPut.type = "text"
+                    // formUrgencyPut.append(inputUrgencyPut)
+                    // const labelUrgencyPut = document.createElement("label")
+                    // labelUrgencyPut.className = "active"
+                    // labelUrgencyPut.setAttribute("for", "urgency");
+                    // labelUrgencyPut.innerHTML = "Срочность"
+                    // formUrgencyPut.append(labelUrgencyPut)
+    
+                    const [formUrgency, selectUrgency] = formItemUrgency()
+                    selectUrgency.value = `${info.content.urgency}`
+                    contentCards.append(formFullNamePut, formPurposePut, formUrgency, formDescriptionPut )
+                    M.FormSelect.init(selectUrgency)
                     
                     if (`${info.content.doctor}` === "Кардиолог") {
                         const formPressurePut = document.createElement("div")
@@ -223,7 +223,7 @@ function getcontent(noItems) {
                         formAgePut.append(labelAgePut)
                         inputAgePut.value = `${info.content.age}`
                         
-                        formUrgencyPut.after(formPressurePut, formBodyMassPut, formCardiovascularPut, formAgePut)
+                        formUrgency.after(formPressurePut, formBodyMassPut, formCardiovascularPut, formAgePut)
                         
                     } else if (`${info.content.doctor}` === "Стоматолог") {
                         const formLastVisitPut = document.createElement("div")
@@ -239,7 +239,7 @@ function getcontent(noItems) {
                         formLastVisitPut.append(labelLastVisitPut)
                         inputLastVisitPut.value = `${info.content.lastvisit}`
                         
-                        formUrgencyPut.after(formLastVisitPut)
+                        formUrgency.after(formLastVisitPut)
                     } else if (`${info.content.doctor}` === "Терапевт") {
                         const formAgePut = document.createElement("div")
                         formAgePut.className = "input-field"
@@ -254,16 +254,16 @@ function getcontent(noItems) {
                         formAgePut.append(labelAgePut)
                         inputAgePut.value = `${info.content.age}`
                         
-                        formUrgencyPut.after(formAgePut)
+                        formUrgency.after(formAgePut)
                     }
                     
-                    const inputPressurePutQ = document.querySelector("#pressurePut")
-                    const inputBodyMassPutQ = document.querySelector("#bodymassPut")
-                    const inputCardiovascularPutQ = document.querySelector("#cardiovascularPut")
-                    const inputLastVisitPutQ = document.querySelector("#lastvisitPut")
-                    const inputAgePutQ = document.querySelector("#agePut")
-                    
                     putCard.onclick = function () {
+                        const inputPressurePutQ = document.querySelector("#pressurePut")
+                        const inputBodyMassPutQ = document.querySelector("#bodymassPut")
+                        const inputCardiovascularPutQ = document.querySelector("#cardiovascularPut")
+                        const inputLastVisitPutQ = document.querySelector("#lastvisitPut")
+                        const inputAgePutQ = document.querySelector("#agePut")
+                        
                         if (`${info.content.doctor}` === "Кардиолог") {
                             fetch(`https://ajax.test-danit.com/api/cards/${info.id}`, {
                                 method: "put",
@@ -275,7 +275,7 @@ function getcontent(noItems) {
                                     "doctor": "Кардиолог",
                                     "purpose": inputPurposePut.value,
                                     "description": inputDescriptionPut.value,
-                                    "urgency": inputUrgencyPut.value,
+                                    "urgency": selectUrgency.value,
                                     "pressure": inputPressurePutQ.value,
                                     "bodymass": inputBodyMassPutQ.value,
                                     "cardiovascular": inputCardiovascularPutQ.value,
