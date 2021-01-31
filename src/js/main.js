@@ -1,5 +1,69 @@
 function renderCards() {
-    const main = document.querySelector(".search")
+    const main = document.createElement("div")
+    main.className = "row center-align hoverable search"
+    document.body.append(main)
+    
+    const mainRow = document.createElement("div")
+    mainRow.className = "row"
+    main.append(mainRow)
+    
+    const formAutocomplete = document.createElement("div")
+    formAutocomplete.className = "input-field col s4"
+    const inputAutocomplete = document.createElement("input")
+    inputAutocomplete.id = "autocomplete-input"
+    inputAutocomplete.className = "autocomplete"
+    inputAutocomplete.type = "text"
+    formAutocomplete.append(inputAutocomplete)
+    const labelAutocomplete = document.createElement("label")
+    labelAutocomplete.setAttribute("for", "autocomplete-input")
+    labelAutocomplete.innerHTML = "Search"
+    formAutocomplete.append(labelAutocomplete)
+    
+    const statusForm = document.createElement("div")
+    statusForm.className = "input-field col s4"
+    const statusSelect = document.createElement("select")
+    const statusSelectOpen = document.createElement("option")
+    statusSelectOpen.value = "open"
+    statusSelectOpen.innerHTML = "Open"
+    const statusSelectDone = document.createElement("option")
+    statusSelectDone.value = "done"
+    statusSelectDone.innerHTML = "Done"
+    const statusLabel = document.createElement("label")
+    statusLabel.innerHTML = "Status"
+    statusSelect.append(statusSelectOpen, statusSelectDone)
+    statusForm.append(statusSelect, statusLabel)
+    
+    const formSearchUrgency = document.createElement("div")
+    formSearchUrgency.className = "input-field col s3"
+    const selectSearchUrgency = document.createElement("select")
+    const lowSearchUrgency = document.createElement("option")
+    lowSearchUrgency.value = "Обычная"
+    lowSearchUrgency.innerHTML = "Обычная"
+    const normalSearchUrgency = document.createElement("option")
+    normalSearchUrgency.value = "Приоритетная"
+    normalSearchUrgency.innerHTML = "Приоритетная"
+    const highSearchUrgency = document.createElement("option")
+    highSearchUrgency.value = "Неотложная"
+    highSearchUrgency.innerHTML = "Неотложная"
+    const searchLabelUrgency = document.createElement("label")
+    searchLabelUrgency.innerHTML = "Urgency"
+    selectSearchUrgency.append(lowSearchUrgency, normalSearchUrgency, highSearchUrgency)
+    formSearchUrgency.append(selectSearchUrgency, searchLabelUrgency)
+    
+    const searchBtnDiv = document.createElement("div")
+    searchBtnDiv.className = "input-field col s1"
+    const searchBtn = document.createElement("button")
+    searchBtn.className = "btn waves-effect waves-light searchBtn"
+    searchBtn.type = "submit"
+    searchBtn.name = "action"
+    searchBtn.innerHTML = "Search"
+    searchBtnDiv.append(searchBtn)
+    
+    
+    mainRow.append(formAutocomplete, statusForm, formSearchUrgency, searchBtnDiv)
+    
+    // M.FormSelect.init(selectUrgency)
+    
     
     const noItems = document.createElement("div")
     noItems.innerHTML = "No items have been added"
@@ -22,20 +86,20 @@ function getcontent(noItems) {
     })
         .then((response) => response.json())
         .then((data) => {
-            console.log(data)
+            // console.log(data)
             data.forEach((info) => {
-    
+                
                 function noitems() {
                     if (data.length > 0) {
                         const noItemsQ = document.querySelector(".no-items")
                         noItemsQ.classList.add("hide")
-            
+                        
                     } else {
                         const noItemsQ = document.querySelector(".no-items")
                         noItemsQ.classList.remove("hide")
                     }
                 }
-    
+                
                 noitems()
                 
                 const rowCardC = document.querySelector(".rowCard")
@@ -113,7 +177,7 @@ function getcontent(noItems) {
                     
                     contentCards.innerHTML = "";
                     contentCards.prepend(deleteCards)
-    
+                    
                     const formFullNamePut = document.createElement("div")
                     formFullNamePut.className = "input-field"
                     const inputFullNamePut = document.createElement("input")
@@ -164,10 +228,10 @@ function getcontent(noItems) {
                     // labelUrgencyPut.setAttribute("for", "urgency");
                     // labelUrgencyPut.innerHTML = "Срочность"
                     // formUrgencyPut.append(labelUrgencyPut)
-    
+                    
                     const [formUrgency, selectUrgency] = formItemUrgency()
                     selectUrgency.value = `${info.content.urgency}`
-                    contentCards.append(formFullNamePut, formPurposePut, formUrgency, formDescriptionPut )
+                    contentCards.append(formFullNamePut, formPurposePut, formUrgency, formDescriptionPut)
                     M.FormSelect.init(selectUrgency)
                     
                     if (`${info.content.doctor}` === "Кардиолог") {
@@ -295,7 +359,7 @@ function getcontent(noItems) {
                                     }
                                 })
                                 .then((data) => {
-                                    console.log(data)
+                                    // console.log(data)
                                 })
                         } else if (`${info.content.doctor}` === "Стоматолог") {
                             fetch(`https://ajax.test-danit.com/api/cards/${info.id}`, {
@@ -308,7 +372,7 @@ function getcontent(noItems) {
                                     "doctor": "Стоматолог",
                                     "purpose": inputPurposePut.value,
                                     "description": inputDescriptionPut.value,
-                                    "urgency": inputUrgencyPut.value,
+                                    "urgency": selectUrgency.value,
                                     "lastvisit": inputLastVisitPutQ.value,
                                     "fullname": inputFullNamePut.value
                                 })
@@ -338,7 +402,7 @@ function getcontent(noItems) {
                                     "doctor": "Терапевт",
                                     "purpose": inputPurposePut.value,
                                     "description": inputDescriptionPut.value,
-                                    "urgency": inputUrgencyPut.value,
+                                    "urgency": selectUrgency.value,
                                     "age": inputAgePutQ.value,
                                     "fullname": inputFullNamePut.value
                                 })

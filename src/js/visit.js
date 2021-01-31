@@ -177,8 +177,6 @@ modalDoctor.append(formDoctor)
 visitFunc();
 
 function visitFunc() {
-    console.log('formUrgency', formUrgency)
-    console.log('formDoctor', formDoctor)
     const selectedDoctor = visitCreate.options[visitCreate.selectedIndex].value;
     
     if (selectedDoctor === "cardiologist") {
