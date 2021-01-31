@@ -13,12 +13,15 @@ searchBtn.onclick = function () {
             console.log(data)
             
             data.forEach((info) => {
+
+                //текстовое поле
                 const autocomplete = document.querySelector(".autocomplete")
                 console.log(autocomplete.value)
-    
-                const arrayInfo = Object.values(info.content)
-
                 
+                //в массив
+                const arrayInfo = Object.values(info.content)
+                
+                //поиск в массиве
                 const filterItems = (query) => {
                     return arrayInfo.filter((el) =>
                         el.toLowerCase().indexOf(query.toLowerCase()) > -1
@@ -27,9 +30,14 @@ searchBtn.onclick = function () {
                 
                 console.log(filterItems(autocomplete.value))
                 
-                if (filterItems(autocomplete.value).length > 0) {
-                    console.log("что-то есть")
+                const testUrgency = document.querySelector(".selectsearchurgency")
+                console.log(testUrgency.value)
+                
+                if (filterItems(autocomplete.value).length > 0 && testUrgency.value === `${info.content.urgency}`) {
+                    console.log("что-то есть, нужно отрисовать как getcontent")
                 }
+                
+                
             })
             
             
