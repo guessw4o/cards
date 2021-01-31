@@ -1,5 +1,14 @@
 function renderCards() {
-    const main = document.querySelector(".search")
+
+    const main = document.createElement("div")
+    main.className = "row center-align hoverable search"
+    document.body.append(main)
+    
+    const mainRow = document.createElement("div")
+    mainRow.className = "row mainrow"
+    main.append(mainRow)
+    
+    mainSearchItem()
     
     const noItems = document.createElement("div")
     noItems.innerHTML = "No items have been added"
@@ -22,7 +31,7 @@ function getcontent(noItems) {
     })
         .then((response) => response.json())
         .then((data) => {
-            console.log(data)
+            // console.log(data)
             data.forEach((info) => {
     
                 function noitems() {
@@ -36,6 +45,21 @@ function getcontent(noItems) {
                     }
                 }
     
+                noitems()
+                
+                const rowCardC = document.querySelector(".rowCard")
+                
+                function noitems() {
+                    if (data.length > 0) {
+                        const noItemsQ = document.querySelector(".no-items")
+                        noItemsQ.classList.add("hide")
+                        
+                    } else {
+                        const noItemsQ = document.querySelector(".no-items")
+                        noItemsQ.classList.remove("hide")
+                    }
+                }
+                
                 noitems()
                 
                 const rowCardC = document.querySelector(".rowCard")
@@ -113,7 +137,7 @@ function getcontent(noItems) {
                     
                     contentCards.innerHTML = "";
                     contentCards.prepend(deleteCards)
-    
+
                     const formFullNamePut = document.createElement("div")
                     formFullNamePut.className = "input-field"
                     const inputFullNamePut = document.createElement("input")
@@ -164,10 +188,11 @@ function getcontent(noItems) {
                     // labelUrgencyPut.setAttribute("for", "urgency");
                     // labelUrgencyPut.innerHTML = "Срочность"
                     // formUrgencyPut.append(labelUrgencyPut)
-    
+                    
                     const [formUrgency, selectUrgency] = formItemUrgency()
                     selectUrgency.value = `${info.content.urgency}`
-                    contentCards.append(formFullNamePut, formPurposePut, formUrgency, formDescriptionPut )
+                    contentCards.append(formFullNamePut, formPurposePut, formUrgency, formDescriptionPut)
+
                     M.FormSelect.init(selectUrgency)
                     
                     if (`${info.content.doctor}` === "Кардиолог") {
@@ -285,8 +310,8 @@ function getcontent(noItems) {
                             })
                                 .then((response) => {
                                     if (response.status === 200) {
-                                        const rowCardQ = document.querySelector(".rowCard")
-                                        rowCardQ.remove()
+                                        const mainQ = document.querySelector(".search")
+                                        mainQ.remove()
                                         renderCards()
                                         getcontent()
                                         return response.text()
@@ -295,7 +320,7 @@ function getcontent(noItems) {
                                     }
                                 })
                                 .then((data) => {
-                                    console.log(data)
+                                    // console.log(data)
                                 })
                         } else if (`${info.content.doctor}` === "Стоматолог") {
                             fetch(`https://ajax.test-danit.com/api/cards/${info.id}`, {
@@ -308,15 +333,15 @@ function getcontent(noItems) {
                                     "doctor": "Стоматолог",
                                     "purpose": inputPurposePut.value,
                                     "description": inputDescriptionPut.value,
-                                    "urgency": inputUrgencyPut.value,
+                                    "urgency": selectUrgency.value,
                                     "lastvisit": inputLastVisitPutQ.value,
                                     "fullname": inputFullNamePut.value
                                 })
                             })
                                 .then((response) => {
                                     if (response.status === 200) {
-                                        const rowCardQ = document.querySelector(".rowCard")
-                                        rowCardQ.remove()
+                                        const mainQ = document.querySelector(".search")
+                                        mainQ.remove()
                                         renderCards()
                                         getcontent()
                                         return response.text()
@@ -338,15 +363,15 @@ function getcontent(noItems) {
                                     "doctor": "Терапевт",
                                     "purpose": inputPurposePut.value,
                                     "description": inputDescriptionPut.value,
-                                    "urgency": inputUrgencyPut.value,
+                                    "urgency": selectUrgency.value,
                                     "age": inputAgePutQ.value,
                                     "fullname": inputFullNamePut.value
                                 })
                             })
                                 .then((response) => {
                                     if (response.status === 200) {
-                                        const rowCardQ = document.querySelector(".rowCard")
-                                        rowCardQ.remove()
+                                        const mainQ = document.querySelector(".search")
+                                        mainQ.remove()
                                         renderCards()
                                         getcontent()
                                         return response.text()

@@ -492,10 +492,8 @@ function sendRequest (body) {
         .then((response) => {
             if (response.status === 200) {
                 modalDoctor.M_Modal.close()
-                const rowCardQ = document.querySelector(".rowCard")
-                rowCardQ.remove()
-                const noItemsQ = document.querySelector(".no-items")
-                noItemsQ.remove()
+                const mainQ = document.querySelector(".search")
+                mainQ.remove()
                 renderCards()
                 getcontent()
                 return response.text()
