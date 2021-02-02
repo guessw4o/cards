@@ -49,21 +49,6 @@ function getcontent(noItems) {
                 
                 const rowCardC = document.querySelector(".rowCard")
                 
-                function noitems() {
-                    if (data.length > 0) {
-                        const noItemsQ = document.querySelector(".no-items")
-                        noItemsQ.classList.add("hide")
-                        
-                    } else {
-                        const noItemsQ = document.querySelector(".no-items")
-                        noItemsQ.classList.remove("hide")
-                    }
-                }
-                
-                noitems()
-                
-                const rowCardC = document.querySelector(".rowCard")
-                
                 const colCards = document.createElement("div")
                 colCards.className = "col m4 colcards"
                 rowCardC.append(colCards)
