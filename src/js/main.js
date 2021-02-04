@@ -62,7 +62,7 @@ function getcontent(noItems) {
                 
                 noitems()
                 
-                const rowCardC = document.querySelector(".rowCard")
+                // const rowCardC = document.querySelector(".rowCard")
                 
                 const colCards = document.createElement("div")
                 colCards.className = "col m4 colcards"
@@ -469,3 +469,11 @@ function getcontent(noItems) {
 }
 
 getcontent()
+
+
+
+
+
+
+
+
