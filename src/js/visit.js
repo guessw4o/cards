@@ -1,505 +1,560 @@
 //генерируем визит и отправляем на сервер
 //модалка
-const modalDoctor = document.createElement("div")
-modalDoctor.id = "create"
-modalDoctor.className = "modal modal-doctor"
 
-document.body.append(modalDoctor)
+class Visit {
+  constructor() {
+    this.content = null;
+  }
 
-//выбор доктора
-const chooseDoctor = document.createElement("div")
-chooseDoctor.className = "input-field choose-doctor"
+  render() {
+    this.addElement();
+    return this.content;
+  }
 
-const visitCreate = document.createElement("select")
-visitCreate.id = "visitCreate"
-visitCreate.onchange = visitFunc;
-
-// const selectDoctor = document.createElement("option")
-// selectDoctor.value = ""
-// selectDoctor.innerHTML = "Выбор специалиста"
-
-const selectCardiologist = document.createElement("option")
-selectCardiologist.value = "cardiologist"
-selectCardiologist.innerHTML = "Кардиолог"
-
-const selectDentist = document.createElement("option")
-selectDentist.value = "dentist"
-selectDentist.innerHTML = "Стоматолог"
-
-const selectTherapist = document.createElement("option")
-selectTherapist.value = "therapist"
-selectTherapist.innerHTML = "Терапевт"
-
-visitCreate.append(selectCardiologist, selectDentist, selectTherapist)
-chooseDoctor.append(visitCreate)
-modalDoctor.append(chooseDoctor)
-
-//форма
-const formDoctor = document.createElement('ul')
-formDoctor.className = "row form-doctor";
-
-//забаганый селект материалайза
-function formItemUrgency () {
-    const li = document.createElement("li")
-    li.className = "input-field col s11 formUrgency"
-    const select = document.createElement("select")
-    select.className = "selectUrgency"
-    
-    const lowUrgency = document.createElement("option")
-    lowUrgency.value = "Обычная"
-    lowUrgency.innerHTML = "Обычная"
-    
-    const normalUrgency = document.createElement("option")
-    normalUrgency.value = "Приоритетная"
-    normalUrgency.innerHTML = "Приоритетная"
-    
-    const highUrgency = document.createElement("option")
-    highUrgency.value = "Неотложная"
-    highUrgency.innerHTML = "Неотложная"
-    
-    select.append(lowUrgency, normalUrgency, highUrgency)
-    li.append(select)
-    return [li, select]
+  addElement(inputVisit) {
+    inputVisit.forEach((el) => {
+      const form = new Form();
+      const formGet = form.createFormVisit();
+      const input = new Input(
+        el.input.id,
+        el.input.className,
+        el.input.type,
+        el.input.required
+      );
+      const label = new Label(el.label.title, el.label.attribute);
+      const labelGet = label.get();
+      const inputGet = input.get();
+      formGet.append(inputGet, labelGet);
+      document.querySelector(".form-doctor").append(formGet);
+    });
+    const select = new Select();
+    document.querySelector(".form-doctor").append(select.render());
+    return;
+  }
 }
 
-const [formUrgency, selectUrgency] = formItemUrgency()
+class Therapist extends Visit {
+  constructor() {
+    super();
+    this.content = null;
+  }
+  get() {
+    this.addElement(inputVisit);
+    this.addAge(age);
+    return this;
+  }
+  addAge(age) {
+    age.forEach((el) => {
+      const form = new Form();
+      const input = new Input(
+        el.input.id,
+        el.input.className,
+        el.input.type,
+        el.input.required
+      );
+      const label = new Label(el.label.title, el.label.attribute);
+      const labelGet = label.get();
+      const inputGet = input.get();
+      const formGet = form.createFormVisit();
+      formGet.append(inputGet, labelGet);
+      document.querySelector(".form-doctor").append(formGet);
+    });
+  }
+}
 
-// const optionUrgency = document.createElement("option")
-// optionUrgency.value = ""
-// optionUrgency.innerHTML = "Срочность"
+class Dentist extends Visit {
+  constructor() {
+    super();
+    this.content = null;
+  }
 
-//цель визита
-const formPurpose = document.createElement("li")
-formPurpose.className = "input-field col s11 formPurpose"
-const inputPurpose = document.createElement("input")
-inputPurpose.id = "purpose"
-inputPurpose.type = "text"
-formPurpose.append(inputPurpose)
-const labelPurpose = document.createElement("label")
-labelPurpose.setAttribute("for", "purpose");
-labelPurpose.innerHTML = "Цель визита"
-formPurpose.append(labelPurpose)
+  get() {
+    this.addElement(inputVisit);
+    this.addLastVisit(lastvisit);
+    return this;
+  }
+  addLastVisit(lastvisit) {
+    lastvisit.forEach((el) => {
+      const form = new Form();
+      const input = new Input(
+        el.input.id,
+        el.input.className,
+        el.input.type,
+        el.input.required
+      );
+      const label = new Label(el.label.title, el.label.attribute);
+      const labelGet = label.get();
+      const inputGet = input.get();
+      const formGet = form.createFormVisit();
+      formGet.append(inputGet, labelGet);
+      document.querySelector(".form-doctor").append(formGet);
+    });
+  }
+}
+class Cardiologist extends Visit {
+  constructor() {
+    super();
+    this.content = null;
+  }
 
+  get() {
+    this.addElement(inputVisit);
+    this.addInputCardiologist(cardiologist);
+    return this;
+  }
+  addInputCardiologist() {
+    cardiologist.forEach((el) => {
+      const form = new Form();
+      const input = new Input(
+        el.input.id,
+        el.input.className,
+        el.input.type,
+        el.input.required
+      );
+      const label = new Label(el.label.title, el.label.attribute);
+      const labelGet = label.get();
+      const inputGet = input.get();
+      const formGet = form.createFormVisit();
+      formGet.append(inputGet, labelGet);
+      document.querySelector(".form-doctor").append(formGet);
+    });
+  }
+}
+const cardiologist = [
+  {
+    label: {
+      title: "Обычное давление",
+      attribute: "pressure",
+    },
+    input: {
+      id: "pressure",
+      type: "text",
+      required: "required",
+    },
+  },
+  {
+    label: {
+      title: "Индекс массы тела",
+      attribute: "bodymass",
+    },
+    input: {
+      id: "bodymass",
+      type: "text",
+      required: "required",
+    },
+  },
+  {
+    label: {
+      title: "Перенесенные заболевания сердечно-сосудистой",
+      attribute: "cardiovascular",
+    },
+    input: {
+      id: "cardiovascular",
+      type: "text",
+      required: "required",
+    },
+  },
+  {
+    label: {
+      title: "Возраст",
+      attribute: "age",
+    },
+    input: {
+      id: "age",
+      type: "text",
+      required: "required",
+    },
+  },
+];
 
-//краткое описание визита
-const formDescription = document.createElement("li")
-formDescription.className = "input-field col s11 formDescription"
-const inputDescription = document.createElement("input")
-inputDescription.id = "description"
-inputDescription.type = "text"
-formDescription.append(inputDescription)
-const labelDescription = document.createElement("label")
-labelDescription.setAttribute("for", "description");
-labelDescription.innerHTML = "Краткое описание визита"
-formDescription.append(labelDescription)
+const lastvisit = [
+  {
+    label: {
+      title: "Дата последнего посещения",
+      attribute: "lastvisit",
+    },
+    input: {
+      id: "lastvisit",
+      type: "text",
+      required: "required",
+    },
+  },
+];
 
-//обычное давление
-const formPressure = document.createElement("li")
-formPressure.className = "input-field col s11 formPressure"
-const inputPressure = document.createElement("input")
-inputPressure.id = "pressure"
-inputPressure.type = "text"
-formPressure.append(inputPressure)
-const labelPressure = document.createElement("label")
-labelPressure.setAttribute("for", "pressure");
-labelPressure.innerHTML = "Обычное давление"
-formPressure.append(labelPressure)
+const age = [
+  {
+    label: {
+      title: "Возраст",
+      attribute: "age",
+    },
+    input: {
+      id: "age",
+      type: "text",
+      required: "required",
+    },
+  },
+];
 
-//индекс массы тела
-const formBodyMass = document.createElement("li")
-formBodyMass.className = "input-field col s11 formBodyMass"
-const inputBodyMass = document.createElement("input")
-inputBodyMass.id = "bodymass"
-inputBodyMass.type = "text"
-formBodyMass.append(inputBodyMass)
-const labelBodyMass = document.createElement("label")
-labelBodyMass.setAttribute("for", "bodymass");
-labelBodyMass.innerHTML = "Индекс массы тела"
-formBodyMass.append(labelBodyMass)
-
-//Перенесенные заболевания сердечно-сосудистой
-const formCardiovascular = document.createElement("li")
-formCardiovascular.className = "input-field col s11 formCardiovascular"
-const inputCardiovascular = document.createElement("input")
-inputCardiovascular.id = "cardiovascular"
-inputCardiovascular.type = "text"
-formCardiovascular.append(inputCardiovascular)
-const labelCardiovascular = document.createElement("label")
-labelCardiovascular.setAttribute("for", "cardiovascular");
-labelCardiovascular.innerHTML = "Перенесенные заболевания сердечно-сосудистой"
-formCardiovascular.append(labelCardiovascular)
-
-//возраст
-const formAge = document.createElement("li")
-formAge.className = "input-field col s11 formAge"
-const inputAge = document.createElement("input")
-inputAge.id = "age"
-inputAge.type = "text"
-formAge.append(inputAge)
-const labelAge = document.createElement("label")
-labelAge.setAttribute("for", "age");
-labelAge.innerHTML = "Возраст"
-formAge.append(labelAge)
-
-//последний визит
-const formLastVisit = document.createElement("li")
-formLastVisit.className = "input-field col s11 formLastVisit"
-const inputLastVisit = document.createElement("input")
-inputLastVisit.id = "lastvisit"
-inputLastVisit.type = "text"
-formLastVisit.append(inputLastVisit)
-const labelLastVisit = document.createElement("label")
-labelLastVisit.setAttribute("for", "lastvisit");
-labelLastVisit.innerHTML = "Дата последнего посещения"
-formLastVisit.append(labelLastVisit)
-
-//фио
-const formFullName = document.createElement("li")
-formFullName.className = "input-field col s11 formFullName"
-const inputFullName = document.createElement("input")
-inputFullName.id = "fullname"
-inputFullName.type = "text"
-formFullName.append(inputFullName)
-const labelFullName = document.createElement("label")
-labelFullName.setAttribute("for", "fullname");
-labelFullName.innerHTML = "ФИО"
-formFullName.append(labelFullName)
+const inputVisit = [
+  {
+    label: {
+      title: "Цель визита",
+      attribute: "purpose",
+    },
+    input: {
+      id: "purpose",
+      className: "purpose",
+      type: "text",
+      required: "required",
+    },
+  },
+  {
+    label: {
+      title: "Краткое описание визита",
+      attribute: "description",
+    },
+    input: {
+      id: "description",
+      type: "text",
+      required: "required",
+    },
+  },
+  {
+    label: {
+      title: "ФИО",
+      attribute: "fullname",
+    },
+    input: {
+      id: "fullname",
+      type: "text",
+      required: "required",
+    },
+  },
+];
 
 //кнопка закрыть
-const formClose = document.createElement("a")
-formClose.className = "waves-effect waves-light btn light-blue accent-3 create-close__btn modal-close"
-formClose.innerHTML = "Закрыть"
-
-
-formDoctor.append(formPurpose, formDescription, formUrgency, formPressure, formBodyMass, formCardiovascular, formAge, formFullName, formClose)
-modalDoctor.append(formDoctor)
-
-visitFunc();
+const formClose = document.createElement("a");
+formClose.className =
+  "waves-effect waves-light btn light-blue accent-3 create-close__btn modal-close";
+formClose.innerHTML = "Закрыть";
+formClose.onclick = function () {
+  document.querySelector(".form-doctor").innerHTML = "";
+  document.querySelector("#visitCreate").value = "choose-doctor";
+};
 
 function visitFunc() {
-    const selectedDoctor = visitCreate.options[visitCreate.selectedIndex].value;
-    
-    if (selectedDoctor === "cardiologist") {
-        
-        if (document.contains(document.querySelector(".formLastVisit"))) {
-            document.querySelector(".formLastVisit").remove();
-        }
-        
-        if (document.contains(document.querySelector(".formAge"))) {
-            document.querySelector(".formAge").remove();
-        }
-        
-        //возраст
-        const formAge = document.createElement("li")
-        formAge.className = "input-field col s11 formAge"
-        const inputAge = document.createElement("input")
-        inputAge.id = "age"
-        inputAge.type = "text"
-        formAge.append(inputAge)
-        const labelAge = document.createElement("label")
-        labelAge.setAttribute("for", "age");
-        labelAge.innerHTML = "Возраст"
-        formAge.append(labelAge)
-        formUrgency.after(formAge)
-        
-        if (document.contains(document.querySelector(".formCardiovascular"))) {
-            document.querySelector(".formCardiovascular").remove();
-        }
-        //Перенесенные заболевания сердечно-сосудистой
-        const formCardiovascular = document.createElement("li")
-        formCardiovascular.className = "input-field col s11 formCardiovascular"
-        const inputCardiovascular = document.createElement("input")
-        inputCardiovascular.id = "cardiovascular"
-        inputCardiovascular.type = "text"
-        formCardiovascular.append(inputCardiovascular)
-        const labelCardiovascular = document.createElement("label")
-        labelCardiovascular.setAttribute("for", "cardiovascular");
-        labelCardiovascular.innerHTML = "Перенесенные заболевания сердечно-сосудистой"
-        formCardiovascular.append(labelCardiovascular)
-        formUrgency.after(formCardiovascular)
-        
-        
-        if (document.contains(document.querySelector(".formBodyMass"))) {
-            document.querySelector(".formBodyMass").remove();
-        }
-        //индекс массы тела
-        const formBodyMass = document.createElement("li")
-        formBodyMass.className = "input-field col s11 formBodyMass"
-        const inputBodyMass = document.createElement("input")
-        inputBodyMass.id = "bodymass"
-        inputBodyMass.type = "text"
-        formBodyMass.append(inputBodyMass)
-        const labelBodyMass = document.createElement("label")
-        labelBodyMass.setAttribute("for", "bodymass");
-        labelBodyMass.innerHTML = "Индекс массы тела"
-        formBodyMass.append(labelBodyMass)
-        formUrgency.after(formBodyMass)
-        
-        
-        if (document.contains(document.querySelector(".formPressure"))) {
-            document.querySelector(".formPressure").remove();
-        }
-        //обычное давление
-        const formPressure = document.createElement("li")
-        formPressure.className = "input-field col s11 formPressure"
-        const inputPressure = document.createElement("input")
-        inputPressure.id = "pressure"
-        inputPressure.type = "text"
-        formPressure.append(inputPressure)
-        const labelPressure = document.createElement("label")
-        labelPressure.setAttribute("for", "pressure");
-        labelPressure.innerHTML = "Обычное давление"
-        formPressure.append(labelPressure)
-        formUrgency.after(formPressure)
-        
-        
-        if (document.contains(document.querySelector(".formCreate"))) {
-            document.querySelector(".formCreate").remove();
-        }
-        
-        //кнопка отправки на сервер
-        const formCreate = document.createElement("button")
-        formCreate.className = "btn waves-effect waves-light right create__btn formCreate"
-        formCreate.type = "submit"
-        formCreate.name = "action"
-        formCreate.innerHTML = "Создать"
-        
-        //иконка в кнопке отправки на сервер
-        const formCreateI = document.createElement("i")
-        formCreateI.className = "material-icons right"
-        formCreateI.innerHTML = "send"
-        formCreate.append(formCreateI)
-        
-        formFullName.after(formCreate)
-        
-        formCreate.onclick = function () {
-            if (!inputPurpose.value) {
-                inputPurpose.classList.add("invalid");
-                return false
-            }
-
-            if (inputPressure.value == 0) {
-                inputPressure.classList.add("invalid");
-                return false
-            }
-
-            if (inputBodyMass.value == 0) {
-                inputBodyMass.classList.add("invalid");
-                return false
-            }
-
-            if (inputCardiovascular.value == 0) {
-                inputCardiovascular.classList.add("invalid");
-                return false
-            }
-
-            if (inputAge.value == 0) {
-                inputAge.classList.add("invalid");
-                return false
-            }
-
-            if (inputFullName.value == 0) {
-                inputFullName.classList.add("invalid");
-                return false
-            }
-    
-            sendRequest({
-                "doctor": "Кардиолог",
-                "purpose": inputPurpose.value,
-                "description": inputDescription.value,
-                "urgency": selectUrgency.value,
-                "pressure": inputPressure.value,
-                "bodymass": inputBodyMass.value,
-                "cardiovascular": inputCardiovascular.value,
-                "age": inputAge.value,
-                "fullname": inputFullName.value
-            })
-        }
-        
-    } else if (selectedDoctor === "dentist") {
-        
-        if (document.contains(document.querySelector(".formPressure"))) {
-            document.querySelector(".formPressure").remove();
-        }
-        
-        if (document.contains(document.querySelector(".formBodyMass"))) {
-            document.querySelector(".formBodyMass").remove();
-        }
-        
-        if (document.contains(document.querySelector(".formCardiovascular"))) {
-            document.querySelector(".formCardiovascular").remove();
-        }
-        
-        if (document.contains(document.querySelector(".formAge"))) {
-            document.querySelector(".formAge").remove();
-        }
-        
-        if (document.contains(document.querySelector(".formLastVisit"))) {
-            document.querySelector(".formLastVisit").remove();
-        }
-        //последний визит
-        const formLastVisit = document.createElement("li")
-        formLastVisit.className = "input-field col s11 formLastVisit"
-        const inputLastVisit = document.createElement("input")
-        inputLastVisit.id = "lastvisit"
-        inputLastVisit.type = "text"
-        formLastVisit.append(inputLastVisit)
-        const labelLastVisit = document.createElement("label")
-        labelLastVisit.setAttribute("for", "lastvisit");
-        labelLastVisit.innerHTML = "Дата последнего посещения"
-        formLastVisit.append(labelLastVisit)
-        formUrgency.after(formLastVisit)
-
-        if (document.contains(document.querySelector(".formCreate"))) {
-            document.querySelector(".formCreate").remove();
-        }
-        
-        //кнопка отправки на сервер
-        const formCreate = document.createElement("button")
-        formCreate.className = "btn waves-effect waves-light right create__btn formCreate"
-        formCreate.type = "submit"
-        formCreate.name = "action"
-        formCreate.innerHTML = "Создать"
-        
-        //иконка в кнопке отправки на сервер
-        const formCreateI = document.createElement("i")
-        formCreateI.className = "material-icons right"
-        formCreateI.innerHTML = "send"
-        formCreate.append(formCreateI)
-        
-        formFullName.after(formCreate)
-        
-        formCreate.onclick = function () {
-            if (inputPurpose.value == 0) {
-                inputPurpose.classList.add("invalid");
-                return false
-            }
-
-            if (inputLastVisit.value == 0) {
-                inputLastVisit.classList.add("invalid");
-                return false
-            }
-
-            if (inputFullName.value == 0) {
-                inputFullName.classList.add("invalid");
-                return false
-            }
-            
-            sendRequest({
-                "doctor": "Стоматолог",
-                "purpose": inputPurpose.value,
-                "description": inputDescription.value,
-                "urgency": selectUrgency.value,
-                "lastvisit": inputLastVisit.value,
-                "fullname": inputFullName.value
-            })
-        }
-        
-    } else if (selectedDoctor === "therapist") {
-        
-        if (document.contains(document.querySelector(".formPressure"))) {
-            document.querySelector(".formPressure").remove();
-        }
-        
-        if (document.contains(document.querySelector(".formBodyMass"))) {
-            document.querySelector(".formBodyMass").remove();
-        }
-        
-        if (document.contains(document.querySelector(".formCardiovascular"))) {
-            document.querySelector(".formCardiovascular").remove();
-        }
-        
-        if (document.contains(document.querySelector(".formLastVisit"))) {
-            document.querySelector(".formLastVisit").remove();
-        }
-        
-        if (document.contains(document.querySelector(".formCreate"))) {
-            document.querySelector(".formCreate").remove();
-        }
-        
-        if (document.contains(document.querySelector(".formAge"))) {
-            document.querySelector(".formAge").remove();
-        }
-        //возраст
-        const formAge = document.createElement("li")
-        formAge.className = "input-field col s11 formAge"
-        const inputAge = document.createElement("input")
-        inputAge.id = "age"
-        inputAge.type = "text"
-        formAge.append(inputAge)
-        const labelAge = document.createElement("label")
-        labelAge.setAttribute("for", "age");
-        labelAge.innerHTML = "Возраст"
-        formAge.append(labelAge)
-        formUrgency.after(formAge)
-        
-        
-        //кнопка отправки на сервер
-        const formCreate = document.createElement("button")
-        formCreate.className = "btn waves-effect waves-light right create__btn formCreate"
-        formCreate.type = "submit"
-        formCreate.name = "action"
-        formCreate.innerHTML = "Создать"
-        
-        //иконка в кнопке отправки на сервер
-        const formCreateI = document.createElement("i")
-        formCreateI.className = "material-icons right"
-        formCreateI.innerHTML = "send"
-        formCreate.append(formCreateI)
-        
-        formFullName.after(formCreate)
-        
-        formCreate.onclick = function () {
-            if (inputPurpose.value == 0) {
-                inputPurpose.classList.add("invalid");
-                return false
-            }
-
-            if (inputAge.value == 0) {
-                inputAge.classList.add("invalid");
-                return false
-            }
-
-            if (inputFullName.value == 0) {
-                inputFullName.classList.add("invalid");
-                return false
-            }
-    
-            sendRequest({
-                doctor: "Терапевт",
-                purpose: inputPurpose.value,
-                description: inputDescription.value,
-                urgency: selectUrgency.value,
-                age: inputAge.value,
-                fullname: inputFullName.value
-            })
-        }
-        
-    }
+  const chooseDoctor = document.querySelector("#visitCreate").options[
+    document.querySelector("#visitCreate").selectedIndex
+  ].value;
+  console.log(chooseDoctor);
+  const cardiologist = new Cardiologist();
+  const dentist = new Dentist();
+  const therapist = new Therapist();
+  if (chooseDoctor === "choose-doctor") {
+    document.querySelector(".form-doctor").innerHTML = "";
+  }
+  if (chooseDoctor === "cardiologist") {
+    document.querySelector(".form-doctor").innerHTML = "";
+    cardiologist.get();
+    document.querySelector(".form-doctor").append(formClose, formCreate);
+  } else if (chooseDoctor === "dentist") {
+    document.querySelector(".form-doctor").innerHTML = "";
+    dentist.get();
+    document.querySelector(".form-doctor").append(formClose, formCreate);
+  } else if (chooseDoctor === "therapist") {
+    document.querySelector(".form-doctor").innerHTML = "";
+    therapist.get();
+    document.querySelector(".form-doctor").append(formClose, formCreate);
+  }
 }
 
-function sendRequest (body) {
-    fetch("https://ajax.test-danit.com/api/cards", {
-        method: "post",
-        headers: {
-            "Content-Type": "application/json; charset=utf-8",
-            Authorization: `Bearer ${localStorage.getItem("token")}`
-        },
-        body: JSON.stringify(body)
+//кнопка отправки на сервер
+const formCreate = document.createElement("button");
+formCreate.className =
+  "btn waves-effect waves-light right create__btn formCreate";
+formCreate.type = "submit";
+formCreate.name = "action";
+formCreate.innerHTML = "Создать";
+
+//иконка в кнопке отправки на сервер
+const formCreateI = document.createElement("i");
+formCreateI.className = "material-icons right";
+formCreateI.innerHTML = "send";
+formCreate.append(formCreateI);
+
+formCreate.onclick = function () {
+  const doctorRequest = document.querySelector("#visitCreate").options[
+    document.querySelector("#visitCreate").selectedIndex
+  ].value;
+  if (doctorRequest == "cardiologist") {
+    sendRequest({
+      doctor: "Кардиолог",
+      purpose: document.querySelector("#purpose").value,
+      description: document.querySelector("#description").value,
+      urgency: document.querySelector(".selectUrgency").value,
+      pressure: document.querySelector("#pressure").value,
+      bodymass: document.querySelector("#bodymass").value,
+      cardiovascular: document.querySelector("#cardiovascular").value,
+      age: document.querySelector("#age").value,
+      fullname: document.querySelector("#fullname").value,
+    });
+  }
+  if (doctorRequest == "dentist") {
+    sendRequest({
+      doctor: "Стоматолог",
+      purpose: document.querySelector("#purpose").value,
+      description: document.querySelector("#description").value,
+      urgency: document.querySelector(".selectUrgency").value,
+      lastvisit: document.querySelector("#lastvisit").value,
+      fullname: document.querySelector("#fullname").value,
+    });
+  }
+  if (doctorRequest == "therapist") {
+    sendRequest({
+      doctor: "Терапевт",
+      purpose: document.querySelector("#purpose").value,
+      description: document.querySelector("#description").value,
+      urgency: document.querySelector(".selectUrgency").value,
+      age: document.querySelector("#age").value,
+      fullname: document.querySelector("#fullname").value,
+    });
+  }
+  document.querySelector(".form-doctor").innerHTML = "";
+  document.querySelector(".select-wrapper").innerHTML = " ";
+
+};
+
+function sendRequest(body) {
+  fetch("https://ajax.test-danit.com/api/cards", {
+    method: "post",
+    headers: {
+      "Content-Type": "application/json; charset=utf-8",
+      Authorization: `Bearer ${localStorage.getItem("token")}`,
+    },
+    body: JSON.stringify(body),
+  })
+    .then((response) => {
+      if (response.status === 200) {
+        // modalDoctor.M_Modal.close();
+        const mainQ = document.querySelector(".search");
+        mainQ.remove();
+        renderCards();
+        getcontent();
+        return response.text();
+      } else {
+        alert("Что-то пошло не так");
+      }
     })
-        .then((response) => {
-            if (response.status === 200) {
-                modalDoctor.M_Modal.close()
-                const mainQ = document.querySelector(".search")
-                mainQ.remove()
-                renderCards()
-                getcontent()
-                return response.text()
-            } else {
-                alert("Что-то пошло не так")
-            }
-        })
-        .then((data) => {
-            console.log(data)
-        })
+    .then((data) => {
+      console.log(data);
+    });
 }
+//       if (inputPressure.value == 0) {
+//         inputPressure.classList.add("invalid");
+//         return false;
+//       }
+
+//       if (inputBodyMass.value == 0) {
+//         inputBodyMass.classList.add("invalid");
+//         return false;
+//       }
+
+//       if (inputCardiovascular.value == 0) {
+//         inputCardiovascular.classList.add("invalid");
+//         return false;
+//       }
+
+//       if (inputAge.value == 0) {
+//         inputAge.classList.add("invalid");
+//         return false;
+//       }
+
+//       if (inputFullName.value == 0) {
+//         inputFullName.classList.add("invalid");
+//         return false;
+//       }
+
+//   } else if (selectedDoctor === "dentist") {
+//     if (document.contains(document.querySelector(".formPressure"))) {
+//       document.querySelector(".formPressure").remove();
+//     }
+
+//     if (document.contains(document.querySelector(".formBodyMass"))) {
+//       document.querySelector(".formBodyMass").remove();
+//     }
+
+//     if (document.contains(document.querySelector(".formCardiovascular"))) {
+//       document.querySelector(".formCardiovascular").remove();
+//     }
+
+//     if (document.contains(document.querySelector(".formAge"))) {
+//       document.querySelector(".formAge").remove();
+//     }
+
+//     if (document.contains(document.querySelector(".formLastVisit"))) {
+//       document.querySelector(".formLastVisit").remove();
+//     }
+//     //последний визит
+//     const formLastVisit = document.createElement("li");
+//     formLastVisit.className = "input-field col s11 formLastVisit";
+//     const inputLastVisit = document.createElement("input");
+//     inputLastVisit.id = "lastvisit";
+//     inputLastVisit.type = "text";
+//     formLastVisit.append(inputLastVisit);
+//     const labelLastVisit = document.createElement("label");
+//     labelLastVisit.setAttribute("for", "lastvisit");
+//     labelLastVisit.innerHTML = "Дата последнего посещения";
+//     formLastVisit.append(labelLastVisit);
+//     formUrgency.after(formLastVisit);
+
+//     if (document.contains(document.querySelector(".formCreate"))) {
+//       document.querySelector(".formCreate").remove();
+//     }
+
+//     //кнопка отправки на сервер
+//     const formCreate = document.createElement("button");
+//     formCreate.className =
+//       "btn waves-effect waves-light right create__btn formCreate";
+//     formCreate.type = "submit";
+//     formCreate.name = "action";
+//     formCreate.innerHTML = "Создать";
+
+//     //иконка в кнопке отправки на сервер
+//     const formCreateI = document.createElement("i");
+//     formCreateI.className = "material-icons right";
+//     formCreateI.innerHTML = "send";
+//     formCreate.append(formCreateI);
+
+//     formFullName.after(formCreate);
+
+//     formCreate.onclick = function () {
+//       if (inputPurpose.value == 0) {
+//         inputPurpose.classList.add("invalid");
+//         return false;
+//       }
+
+//       if (inputLastVisit.value == 0) {
+//         inputLastVisit.classList.add("invalid");
+//         return false;
+//       }
+
+//       if (inputFullName.value == 0) {
+//         inputFullName.classList.add("invalid");
+//         return false;
+//       }
+
+//       sendRequest({
+//         doctor: "Стоматолог",
+//         purpose: inputPurpose.value,
+//         description: inputDescription.value,
+//         urgency: selectUrgency.value,
+//         lastvisit: inputLastVisit.value,
+//         fullname: inputFullName.value,
+//       });
+//     };
+//   } else if (selectedDoctor === "therapist") {
+//     if (document.contains(document.querySelector(".formPressure"))) {
+//       document.querySelector(".formPressure").remove();
+//     }
+
+//     if (document.contains(document.querySelector(".formBodyMass"))) {
+//       document.querySelector(".formBodyMass").remove();
+//     }
+
+//     if (document.contains(document.querySelector(".formCardiovascular"))) {
+//       document.querySelector(".formCardiovascular").remove();
+//     }
+
+//     if (document.contains(document.querySelector(".formLastVisit"))) {
+//       document.querySelector(".formLastVisit").remove();
+//     }
+
+//     if (document.contains(document.querySelector(".formCreate"))) {
+//       document.querySelector(".formCreate").remove();
+//     }
+
+//     if (document.contains(document.querySelector(".formAge"))) {
+//       document.querySelector(".formAge").remove();
+//     }
+//     //возраст
+//     const formAge = document.createElement("li");
+//     formAge.className = "input-field col s11 formAge";
+//     const inputAge = document.createElement("input");
+//     inputAge.id = "age";
+//     inputAge.type = "text";
+//     formAge.append(inputAge);
+//     const labelAge = document.createElement("label");
+//     labelAge.setAttribute("for", "age");
+//     labelAge.innerHTML = "Возраст";
+//     formAge.append(labelAge);
+//     formUrgency.after(formAge);
+
+//     //кнопка отправки на сервер
+//     const formCreate = document.createElement("button");
+//     formCreate.className =
+//       "btn waves-effect waves-light right create__btn formCreate";
+//     formCreate.type = "submit";
+//     formCreate.name = "action";
+//     formCreate.innerHTML = "Создать";
+
+//     //иконка в кнопке отправки на сервер
+//     const formCreateI = document.createElement("i");
+//     formCreateI.className = "material-icons right";
+//     formCreateI.innerHTML = "send";
+//     formCreate.append(formCreateI);
+
+//     formFullName.after(formCreate);
+
+//     formCreate.onclick = function () {
+//       if (inputPurpose.value == 0) {
+//         inputPurpose.classList.add("invalid");
+//         return false;
+//       }
+
+//       if (inputAge.value == 0) {
+//         inputAge.classList.add("invalid");
+//         return false;
+//       }
+
+//       if (inputFullName.value == 0) {
+//         inputFullName.classList.add("invalid");
+//         return false;
+//       }
+
+//       sendRequest({
+//         doctor: "Терапевт",
+//         purpose: inputPurpose.value,
+//         description: inputDescription.value,
+//         urgency: selectUrgency.value,
+//         age: inputAge.value,
+//         fullname: inputFullName.value,
+//       });
+//     };
+//   }
+// }
+
+// function sendRequest(body) {
+//   fetch("https://ajax.test-danit.com/api/cards", {
+//     method: "post",
+//     headers: {
+//       "Content-Type": "application/json; charset=utf-8",
+//       Authorization: `Bearer ${localStorage.getItem("token")}`,
+//     },
+//     body: JSON.stringify(body),
+//   })
+//     .then((response) => {
+//       if (response.status === 200) {
+//         modalDoctor.M_Modal.close();
+//         const mainQ = document.querySelector(".search");
+//         mainQ.remove();
+//         renderCards();
+//         getcontent();
+//         return response.text();
+//       } else {
+//         alert("Что-то пошло не так");
+//       }
+//     })
+//     .then((data) => {
+//       console.log(data);
+//     });
+// }
