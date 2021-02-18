@@ -10,15 +10,15 @@ class Select {
     this.select = document.createElement("select");
     this.select.id = "visitCreate";
     this.select.onchange = visitFunc;
+    return this.select;
   }
 
   addChooseText() {
     this.content = document.createElement("option");
     this.content.value = "choose-doctor";
-    // this.content.selected = "enable selected";
-    this.content.className = "choose-doctor";
     this.content.innerHTML = "Выбор специалиста";
     this.select.append(this.content);
+    return this.content;
   }
   chooseTherapist() {
     this.content = document.createElement("option");
@@ -57,7 +57,7 @@ class Select {
     this.addLowUrgency();
     this.addNormalUrgency();
     this.addHighUrgency();
-
+    M.FormSelect.init(this.selectUrgency);
     return this.content;
   }
   createSelectUrgency() {
@@ -67,8 +67,6 @@ class Select {
     this.selectUrgency.className = "selectUrgency";
     document.querySelector(".form-doctor").append(this.content);
     document.querySelector(".formUrgency").append(this.selectUrgency);
-
-    return M.FormSelect.init(this.selectUrgency);
   }
 
   addOptionUrgency() {
@@ -77,27 +75,43 @@ class Select {
     this.options.selected;
     this.options.innerHTML = "Срочность";
     this.selectUrgency.append(this.options);
-    return M.FormSelect.init(this.selectUrgency);
   }
   addLowUrgency() {
     this.options = document.createElement("option");
     this.options.value = "Обычная";
     this.options.innerHTML = "Обычная";
     this.selectUrgency.append(this.options);
-    return M.FormSelect.init(this.selectUrgency);
   }
   addNormalUrgency() {
     this.options = document.createElement("option");
     this.options.value = "Приоритетная";
     this.options.innerHTML = "Приоритетная";
     this.selectUrgency.append(this.options);
-    return M.FormSelect.init(this.selectUrgency);
   }
   addHighUrgency() {
     this.options = document.createElement("option");
     this.options.value = "Неотложная";
     this.options.innerHTML = "Неотложная";
     this.selectUrgency.append(this.options);
-    return M.FormSelect.init(this.selectUrgency);
+  }
+}
+
+class SelectSearchUrgency extends Select {
+  constructor() {
+    super();
+    this.selectUrgency = null;
+  }
+  createSelectSearchUrgency() {
+    this.selectUrgency = document.createElement("select");
+    this.selectUrgency.className = "select-search-urgency";
+  }
+
+  get() {
+    this.createSelectSearchUrgency();
+    super.addOptionUrgency();
+    super.addLowUrgency();
+    super.addNormalUrgency();
+    super.addHighUrgency();
+    return this.selectUrgency;
   }
 }

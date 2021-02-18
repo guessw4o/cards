@@ -30,7 +30,6 @@ function getcontent(noItems) {
   })
     .then((response) => response.json())
     .then((data) => {
-      // console.log(data)
       data.forEach((info) => {
         function noitems() {
           if (data.length > 0) {
@@ -120,6 +119,87 @@ function getcontent(noItems) {
           contentCards.innerHTML = "";
           contentCards.prepend(deleteCards);
 
+          //           const formFullNamePut = document.createElement("div");
+          //           formFullNamePut.className = "input-field";
+          //           console.log(formFullNamePut);
+          //           const inputFullNamePut = new Input(
+          //             (id = "fullname"),
+          //             (className = "fullname"),
+          //             (type = "text")
+          //           );
+          //           const inputFullNameCreate = inputFullNamePut.get();
+          //           formFullNamePut.append(inputFullNameCreate);
+          //           console.log(inputFullNameCreate);
+
+          //           const labelFullNamePut = new Label(
+          //             (title = "ФИО"),
+          //             (attribute = "fullname")
+          //           );
+          //           const labelFullNameCreate = labelFullNamePut.get();
+          //           labelFullNameCreate.classList.add("active");
+          //           formFullNamePut.append(labelFullNameCreate);
+          //           console.log(labelFullNameCreate);
+          //           // inputFullNameCreate.value = document.querySelector("#fullname");
+          //           inputFullNameCreate.value = `${info.content.fullname}`;
+
+          //           const formPurposePut = document.createElement("div");
+          //           formPurposePut.className = "input-field";
+          //           const inputPurposePut = new Input(
+          //             (id = "purpose"),
+          //             (className = "purpose"),
+          //             (type = "text")
+          //           );
+          //           const inputPurposeCreate = inputPurposePut.get();
+          //           console.log(inputPurposeCreate);
+          //           formPurposePut.append(inputPurposeCreate);
+          //           const labelPurposePut = new Label(
+          //             (title = "Цель визита"),
+          //             (attribute = "purpose")
+          //           );
+          //           const labelPurposeCreate = labelPurposePut.get();
+          //           labelPurposeCreate.classList.add("active");
+          //           console.log(labelPurposeCreate);
+          //           formPurposePut.append(labelPurposeCreate);
+          //           inputPurposeCreate.value = `${info.content.purpose}`;
+
+          //           const formDescriptionPut = document.createElement("div");
+          //           formDescriptionPut.className = "input-field";
+          //           const inputDescriptionPut = new Input(
+          //             (id = "description"),
+          //             (className = "description"),
+          //             (type = "text")
+          //           );
+          //           const inputDescriptionCreate = inputDescriptionPut.get();
+          //           console.log(inputDescriptionCreate);
+          //           formDescriptionPut.append(inputDescriptionCreate);
+          // const labelDescriptionPut = new Label(title = "Описание", attribute = "description")
+          //           const labelDescriptionPut = document.createElement("label");
+          //           labelDescriptionPut.className = "active";
+          //           labelDescriptionPut.setAttribute("for", "description");
+          //           labelDescriptionPut.innerHTML = "Описание";
+          //           formDescriptionPut.append(labelDescriptionPut);
+          //           inputDescriptionPut.value = `${info.content.description}`;
+
+          //           // const formUrgencyPut = document.createElement("div")
+          //           // formUrgencyPut.className = "input-field"
+          //           // const inputUrgencyPut = document.createElement("input")
+          //           // inputUrgencyPut.id = "urgency"
+          //           // inputUrgencyPut.type = "text"
+          //           // formUrgencyPut.append(inputUrgencyPut)
+          //           // const labelUrgencyPut = document.createElement("label")
+          //           // labelUrgencyPut.className = "active"
+          //           // labelUrgencyPut.setAttribute("for", "urgency");
+          //           // labelUrgencyPut.innerHTML = "Срочность"
+          //           // formUrgencyPut.append(labelUrgencyPut)
+
+          //           const [formUrgency, selectUrgency] = formItemUrgency();
+          //           selectUrgency.value = `${info.content.urgency}`;
+          //           contentCards.append(
+          //             formFullNamePut,
+          //             formPurposePut,
+          //             formUrgency,
+          //             formDescriptionPut
+          //           );
           const formFullNamePut = document.createElement("div");
           formFullNamePut.className = "input-field";
           const inputFullNamePut = document.createElement("input");
@@ -158,31 +238,19 @@ function getcontent(noItems) {
           labelDescriptionPut.innerHTML = "Описание";
           formDescriptionPut.append(labelDescriptionPut);
           inputDescriptionPut.value = `${info.content.description}`;
-
-          // const formUrgencyPut = document.createElement("div")
-          // formUrgencyPut.className = "input-field"
-          // const inputUrgencyPut = document.createElement("input")
-          // inputUrgencyPut.id = "urgency"
-          // inputUrgencyPut.type = "text"
-          // formUrgencyPut.append(inputUrgencyPut)
-          // const labelUrgencyPut = document.createElement("label")
-          // labelUrgencyPut.className = "active"
-          // labelUrgencyPut.setAttribute("for", "urgency");
-          // labelUrgencyPut.innerHTML = "Срочность"
-          // formUrgencyPut.append(labelUrgencyPut)
-
-          const [formUrgency, selectUrgency] = formItemUrgency();
-          selectUrgency.value = `${info.content.urgency}`;
+          // const [formUrgency, selectUrgency] = formItemUrgency();
+          // selectUrgency.value = `${info.content.urgency}`;
           contentCards.append(
             formFullNamePut,
             formPurposePut,
-            formUrgency,
+            // formUrgency,
             formDescriptionPut
           );
 
-          // M.FormSelect.init(selectUrgency)
-
+          // M.FormSelect.init(selectUrgency);
           if (`${info.content.doctor}` === "Кардиолог") {
+            console.log("huy");
+
             const formPressurePut = document.createElement("div");
             formPressurePut.className = "input-field";
             const inputPressurePut = document.createElement("input");
@@ -235,12 +303,12 @@ function getcontent(noItems) {
             formAgePut.append(labelAgePut);
             inputAgePut.value = `${info.content.age}`;
 
-            formUrgency.after(
-              formPressurePut,
-              formBodyMassPut,
-              formCardiovascularPut,
-              formAgePut
-            );
+            // formUrgency.after(
+            //   formPressurePut,
+            //   formBodyMassPut,
+            //   formCardiovascularPut,
+            //   formAgePut
+            // );
           } else if (`${info.content.doctor}` === "Стоматолог") {
             const formLastVisitPut = document.createElement("div");
             formLastVisitPut.className = "input-field";
@@ -255,7 +323,7 @@ function getcontent(noItems) {
             formLastVisitPut.append(labelLastVisitPut);
             inputLastVisitPut.value = `${info.content.lastvisit}`;
 
-            formUrgency.after(formLastVisitPut);
+            // formUrgency.after(formLastVisitPut);
           } else if (`${info.content.doctor}` === "Терапевт") {
             const formAgePut = document.createElement("div");
             formAgePut.className = "input-field";
@@ -270,7 +338,7 @@ function getcontent(noItems) {
             formAgePut.append(labelAgePut);
             inputAgePut.value = `${info.content.age}`;
 
-            formUrgency.after(formAgePut);
+            // formUrgency.after(formAgePut);
           }
 
           putCard.onclick = function () {
