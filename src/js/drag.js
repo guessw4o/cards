@@ -1,10 +1,3 @@
-const cards = document.querySelector(".rowCard")
-
-let cardsAttribute = cards.attributes;
-let idCards = document.createAttribute("id");
-    idCards.value = "field";
-    cardsAttribute.setNamedItem(idCards);
-
 class DragAndDrop {
     constructor(box, main) {
         this.box = document.querySelector(box);

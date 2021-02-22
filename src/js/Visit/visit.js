@@ -107,10 +107,7 @@ function visitFunc() {
   }
 }
 
-//       if (inputPressure.value == 0) {
-//         inputPressure.classList.add("invalid");
-//         return false;
-//       }
+
 
 //       if (inputBodyMass.value == 0) {
 //         inputBodyMass.classList.add("invalid");

@@ -37,6 +37,7 @@ let { src, dest } = require('gulp'),
 	uglify = require("gulp-uglify-es").default,
 	imagemin = require("gulp-imagemin"),
 	webpcss = require("gulp-webpcss");
+	concat = require('gulp-concat');
 
 function browserSync(params) {
 	browsersync.init({

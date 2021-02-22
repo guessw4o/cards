@@ -13,7 +13,7 @@ searchBtn.onclick = function () {
             console.log(data)
             
             data.forEach((info) => {
-                
+
                 //текстовое поле
                 const autocomplete = document.querySelector(".autocomplete")
                 console.log(autocomplete.value)
@@ -30,7 +30,7 @@ searchBtn.onclick = function () {
                 
                 console.log(filterItems(autocomplete.value))
                 
-                const testUrgency = document.querySelector(".selectsearchurgency")
+                const testUrgency = document.querySelector(".select-search-urgency")
                 console.log(testUrgency.value)
                 
                 if (filterItems(autocomplete.value).length > 0 && testUrgency.value === `${info.content.urgency}`) {
@@ -39,27 +39,27 @@ searchBtn.onclick = function () {
                     const mainQ = document.querySelector(".search")
                     mainQ.remove()
                     renderCards()
-                    
-                    
+    
+    
                     const rowCardC = document.querySelector(".rowCard")
-                    
+    
                     const colCards = document.createElement("div")
                     colCards.className = "col m4 colcards"
                     rowCardC.append(colCards)
-                    
+    
                     const greyCards = document.createElement("div")
                     greyCards.className = "card blue-grey darken-1"
                     colCards.append(greyCards)
-                    
+    
                     const contentCards = document.createElement("div")
                     contentCards.className = "card-content white-text left-align"
-                    
+    
                     const deleteCards = document.createElement("a")
                     deleteCards.className = "right"
                     deleteCards.style.cursor = "pointer"
                     deleteCards.style.color = "#ffffff"
                     deleteCards.innerHTML = "X"
-                    
+    
                     deleteCards.onclick = function () {
                         fetch(`https://ajax.test-danit.com/api/cards/${info.id}`, {
                             method: "delete",
@@ -70,19 +70,19 @@ searchBtn.onclick = function () {
                         })
                         colCards.remove()
                     }
-                    
+    
                     const cardAction = document.createElement("div")
                     cardAction.className = "card-action"
                     greyCards.append(contentCards, cardAction)
-                    
+    
                     const loadMore = document.createElement("a")
                     loadMore.innerHTML = "Показать больше"
                     loadMore.style.cursor = "pointer"
-                    
+    
                     loadMore.onclick = function () {
                         divHide.classList.remove("hide")
                         loadMore.classList.add("hide")
-                        
+        
                         if (`${info.content.doctor}` === "Кардиолог") {
                             pLastVisit.remove()
                         } else if (`${info.content.doctor}` === "Стоматолог") {
@@ -97,26 +97,26 @@ searchBtn.onclick = function () {
                             pLastVisit.remove()
                         }
                     }
-                    
+    
                     const editCard = document.createElement("a")
                     editCard.innerHTML = "Редактировать"
                     editCard.style.cursor = "pointer"
                     cardAction.append(loadMore, editCard)
-                    
+    
                     editCard.onclick = function () {
                         divHide.classList.remove("hide")
                         loadMore.classList.add("hide")
                         editCard.classList.add("hide")
-                        
+        
                         const putCard = document.createElement("a")
                         putCard.innerHTML = "Отредактировать"
                         putCard.style.marginRight = "0"
                         putCard.style.cursor = "pointer"
                         cardAction.append(putCard)
-                        
+        
                         contentCards.innerHTML = "";
                         contentCards.prepend(deleteCards)
-                        
+        
                         const formFullNamePut = document.createElement("div")
                         formFullNamePut.className = "input-field"
                         const inputFullNamePut = document.createElement("input")
@@ -129,7 +129,7 @@ searchBtn.onclick = function () {
                         labelFullNamePut.innerHTML = "ФИО"
                         formFullNamePut.append(labelFullNamePut)
                         inputFullNamePut.value = `${info.content.fullname}`
-                        
+        
                         const formPurposePut = document.createElement("div")
                         formPurposePut.className = "input-field"
                         const inputPurposePut = document.createElement("input")
@@ -142,7 +142,7 @@ searchBtn.onclick = function () {
                         labelPurposePut.innerHTML = "Цель визита"
                         formPurposePut.append(labelPurposePut)
                         inputPurposePut.value = `${info.content.purpose}`
-                        
+        
                         const formDescriptionPut = document.createElement("div")
                         formDescriptionPut.className = "input-field"
                         const inputDescriptionPut = document.createElement("input")
@@ -155,7 +155,7 @@ searchBtn.onclick = function () {
                         labelDescriptionPut.innerHTML = "Описание"
                         formDescriptionPut.append(labelDescriptionPut)
                         inputDescriptionPut.value = `${info.content.description}`
-                        
+        
                         // const formUrgencyPut = document.createElement("div")
                         // formUrgencyPut.className = "input-field"
                         // const inputUrgencyPut = document.createElement("input")
@@ -167,13 +167,13 @@ searchBtn.onclick = function () {
                         // labelUrgencyPut.setAttribute("for", "urgency");
                         // labelUrgencyPut.innerHTML = "Срочность"
                         // formUrgencyPut.append(labelUrgencyPut)
-                        
-                        const [formUrgency, selectUrgency] = formItemUrgency()
-                        selectUrgency.value = `${info.content.urgency}`
-                        contentCards.append(formFullNamePut, formPurposePut, formUrgency, formDescriptionPut)
-                        
-                        M.FormSelect.init(selectUrgency)
-                        
+        
+                        // const [formUrgency, selectUrgency] = formItemUrgency()
+                        // selectUrgency.value = `${info.content.urgency}`
+                        contentCards.append(formFullNamePut, formPurposePut, formDescriptionPut)
+        
+                        // M.FormSelect.init(selectUrgency)
+        
                         if (`${info.content.doctor}` === "Кардиолог") {
                             const formPressurePut = document.createElement("div")
                             formPressurePut.className = "input-field"
@@ -187,7 +187,7 @@ searchBtn.onclick = function () {
                             labelPressurePut.innerHTML = "Обычное давление"
                             formPressurePut.append(labelPressurePut)
                             inputPressurePut.value = `${info.content.pressure}`
-                            
+            
                             const formBodyMassPut = document.createElement("div")
                             formBodyMassPut.className = "input-field"
                             const inputBodyMassPut = document.createElement("input")
@@ -200,7 +200,7 @@ searchBtn.onclick = function () {
                             labelBodyMassPut.innerHTML = "ИМТ"
                             formBodyMassPut.append(labelBodyMassPut)
                             inputBodyMassPut.value = `${info.content.bodymass}`
-                            
+            
                             const formCardiovascularPut = document.createElement("div")
                             formCardiovascularPut.className = "input-field"
                             const inputCardiovascularPut = document.createElement("input")
@@ -213,7 +213,7 @@ searchBtn.onclick = function () {
                             labelCardiovascularPut.innerHTML = "Заболевания"
                             formCardiovascularPut.append(labelCardiovascularPut)
                             inputCardiovascularPut.value = `${info.content.cardiovascular}`
-                            
+            
                             const formAgePut = document.createElement("div")
                             formAgePut.className = "input-field"
                             const inputAgePut = document.createElement("input")
@@ -226,9 +226,9 @@ searchBtn.onclick = function () {
                             labelAgePut.innerHTML = "Возраст"
                             formAgePut.append(labelAgePut)
                             inputAgePut.value = `${info.content.age}`
-                            
-                            formUrgency.after(formPressurePut, formBodyMassPut, formCardiovascularPut, formAgePut)
-                            
+            
+                            formDescriptionPut.after(formPressurePut, formBodyMassPut, formCardiovascularPut, formAgePut)
+            
                         } else if (`${info.content.doctor}` === "Стоматолог") {
                             const formLastVisitPut = document.createElement("div")
                             formLastVisitPut.className = "input-field"
@@ -242,8 +242,8 @@ searchBtn.onclick = function () {
                             labelLastVisitPut.innerHTML = "Последнее посещение"
                             formLastVisitPut.append(labelLastVisitPut)
                             inputLastVisitPut.value = `${info.content.lastvisit}`
-                            
-                            formUrgency.after(formLastVisitPut)
+            
+                            formDescriptionPut.after(formLastVisitPut)
                         } else if (`${info.content.doctor}` === "Терапевт") {
                             const formAgePut = document.createElement("div")
                             formAgePut.className = "input-field"
@@ -257,17 +257,17 @@ searchBtn.onclick = function () {
                             labelAgePut.innerHTML = "Возраст"
                             formAgePut.append(labelAgePut)
                             inputAgePut.value = `${info.content.age}`
-                            
-                            formUrgency.after(formAgePut)
+            
+                            formDescriptionPut.after(formAgePut)
                         }
-                        
+        
                         putCard.onclick = function () {
                             const inputPressurePutQ = document.querySelector("#pressurePut")
                             const inputBodyMassPutQ = document.querySelector("#bodymassPut")
                             const inputCardiovascularPutQ = document.querySelector("#cardiovascularPut")
                             const inputLastVisitPutQ = document.querySelector("#lastvisitPut")
                             const inputAgePutQ = document.querySelector("#agePut")
-                            
+            
                             if (`${info.content.doctor}` === "Кардиолог") {
                                 fetch(`https://ajax.test-danit.com/api/cards/${info.id}`, {
                                     method: "put",
@@ -279,7 +279,7 @@ searchBtn.onclick = function () {
                                         "doctor": "Кардиолог",
                                         "purpose": inputPurposePut.value,
                                         "description": inputDescriptionPut.value,
-                                        "urgency": selectUrgency.value,
+                                        "urgency": `${info.content.urgency}`,
                                         "pressure": inputPressurePutQ.value,
                                         "bodymass": inputBodyMassPutQ.value,
                                         "cardiovascular": inputCardiovascularPutQ.value,
@@ -312,7 +312,7 @@ searchBtn.onclick = function () {
                                         "doctor": "Стоматолог",
                                         "purpose": inputPurposePut.value,
                                         "description": inputDescriptionPut.value,
-                                        "urgency": selectUrgency.value,
+                                        "urgency": `${info.content.urgency}`,
                                         "lastvisit": inputLastVisitPutQ.value,
                                         "fullname": inputFullNamePut.value
                                     })
@@ -342,7 +342,7 @@ searchBtn.onclick = function () {
                                         "doctor": "Терапевт",
                                         "purpose": inputPurposePut.value,
                                         "description": inputDescriptionPut.value,
-                                        "urgency": selectUrgency.value,
+                                        "urgency": `${info.content.urgency}`,
                                         "age": inputAgePutQ.value,
                                         "fullname": inputFullNamePut.value
                                     })
@@ -362,77 +362,77 @@ searchBtn.onclick = function () {
                                         console.log(data)
                                     })
                             }
-                            
+            
                         }
                     }
-                    
+    
                     const pFullName = document.createElement("p")
                     pFullName.innerHTML = "ФИО: "
                     const spanFullName = document.createElement("span")
                     spanFullName.className = "fullname"
                     pFullName.append(spanFullName)
-                    
+    
                     const pDoctor = document.createElement("p")
                     pDoctor.innerHTML = "Доктор: "
                     const spanDoctor = document.createElement("span")
                     spanDoctor.className = "doctor"
                     pDoctor.append(spanDoctor)
-                    
+    
                     const divHide = document.createElement("div")
                     divHide.className = "hide"
-                    
+    
                     contentCards.append(deleteCards, pFullName, pDoctor, divHide)
-                    
+    
                     const pPurpose = document.createElement("p")
                     pPurpose.innerHTML = "Цель: "
                     const spanPurpose = document.createElement("span")
                     spanPurpose.className = "purpose"
                     pPurpose.append(spanPurpose)
-                    
+    
                     const pDescription = document.createElement("p")
                     pDescription.innerHTML = "Описание: "
                     const spanDescription = document.createElement("span")
                     spanDescription.className = "description"
                     pDescription.append(spanDescription)
-                    
+    
                     const pUrgency = document.createElement("p")
                     pUrgency.innerHTML = "Срочность: "
                     const spanUrgency = document.createElement("span")
                     spanUrgency.className = "urgency"
                     pUrgency.append(spanUrgency)
-                    
+    
                     const pPressure = document.createElement("p")
                     pPressure.innerHTML = "Обычное давление: "
                     const spanPressure = document.createElement("span")
                     spanPressure.className = "pressure"
                     pPressure.append(spanPressure)
-                    
+    
                     const pBodyMass = document.createElement("p")
                     pBodyMass.innerHTML = "ИМТ: "
                     const spanBodyMass = document.createElement("span")
                     spanBodyMass.className = "bodymass"
                     pBodyMass.append(spanBodyMass)
-                    
+    
                     const pCardiovascular = document.createElement("p")
                     pCardiovascular.innerHTML = "Заболевания: "
                     const spanCardiovascular = document.createElement("span")
                     spanCardiovascular.className = "cardiovascular"
                     pCardiovascular.append(spanCardiovascular)
-                    
+    
                     const pLastVisit = document.createElement("p")
                     pLastVisit.innerHTML = "Последнее посещение: "
                     const spanLastVisit = document.createElement("span")
                     spanLastVisit.className = "lastvisit"
                     pLastVisit.append(spanLastVisit)
-                    
+    
                     const pAge = document.createElement("p")
                     pAge.innerHTML = "Возраст: "
                     const spanAge = document.createElement("span")
                     spanAge.className = "age"
                     pAge.append(spanAge)
-                    
+    
                     divHide.append(pPurpose, pDescription, pUrgency, pPressure, pBodyMass, pCardiovascular, pLastVisit, pAge)
-                    
+    
                     spanFullName.append(`${info.content.fullname}`)
                     spanDoctor.append(`${info.content.doctor}`)
                     spanPurpose.append(`${info.content.purpose}`)
@@ -443,8 +443,6 @@ searchBtn.onclick = function () {
                     spanCardiovascular.append(`${info.content.cardiovascular}`)
                     spanLastVisit.append(`${info.content.lastvisit}`)
                     spanAge.append(`${info.content.age}`)
-                    
-                    
                 }
                 else {
                     console.log("нету")

@@ -15,6 +15,6 @@ class Form {
   }
   create() {
     this.form = document.createElement("li");
-    this.form.className = "input-field col s12";
+    this.form.className = "input-field col s11";
   }
 }
